@@ -1,4 +1,4 @@
-# ️‍cub3d
+# ️‍🧊 cub3d 🧊
 
 ## Code Structure
     cub3d/
