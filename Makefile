@@ -14,11 +14,11 @@
 #	GENERAL                                                                    #
 # ============================================================================ #
 
-NAME	= minishell
+NAME	= cub3d
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
-LIBFLAGS	=
+LIBFLAGS	= -L$(MLX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lbsd -lXext -lX11 -lm
 RM			= rm -rf
 
 INCLUDE		= -Iinclude/
@@ -26,13 +26,19 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 LIBFT_DIR	= libft/
 LIBFT		= libft/libft.a
+MLX_DIR		= minilibx-linux/
+MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
 
 
-SRC_FILES	= 0_main.c \
+SRC_FILES	= main.c error.c \
+			  0_init/0_init_data.c 0_init/0_init_mlx.c 0_init/0_init_textures.c \
+			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c
 
 SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
-OBJ			= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+OBJ_FILES	= $(SRC_FILES:.c=.o)
+
+OBJ			= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 # ============================================================================ #
 #	COLORS                                                                     #
@@ -58,21 +64,34 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@ make -C $(LIBFT_DIR) -s
+	@ make -C $(MLX_DIR) -s
 	@ echo "Compilating ${YELLOW}$(NAME) ${CLR_RMV}..."
 	@ $(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME) $(LIBFLAGS) $(LIBFT)
-	@ echo "${BLUE}           _       _     _          _ _"
-	@ echo " _ __ ___ (_)_ __ (_)___| |__   ___| | |"
-	@ echo "| '_ \` _ \\| | '_ \\| / __| '_ \\ / _ \\ | |"
-	@ echo "| | | | | | | | | | \\__ \\ | | |  __/ | |"
-	@ echo "|_| |_| |_|_|_| |_|_|___/_| |_|\\___|_|_|"
-	@ echo "${R_BLUE}        by ${BLUE}daduarte ${R_BLUE}& ${BLUE}luibarbo"
+	@ echo " "
+	@ echo "${BLUE}                     █████      ████████      █████"
+	@ echo "                    ░░███      ███░░░░███    ░░███ "
+	@ echo "  ██████  █████ ████ ░███████ ░░░    ░███  ███████ "
+	@ echo " ███░░███░░███ ░███  ░███░░███   ██████░  ███░░███ "
+	@ echo "░███ ░░░  ░███ ░███  ░███ ░███  ░░░░░░███░███ ░███ "
+	@ echo "░███  ███ ░███ ░███  ░███ ░███ ███   ░███░███ ░███ "
+	@ echo "░░██████  ░░████████ ████████ ░░████████ ░░████████ "
+	@ echo " ░░░░░░    ░░░░░░░░ ░░░░░░░░   ░░░░░░░░   ░░░░░░░░ "
+	@ echo " "
+	@ echo "${R_BLUE}              by ${BLUE}daduarte ${R_BLUE}& ${BLUE}luibarbo"
 	@ echo "${CLR_RMV}"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/0_init
+
+# @mkdir -p $(OBJ_DIR)/1_parsing
+# @mkdir -p $(OBJ_DIR)/2_movement
+# @mkdir -p $(OBJ_DIR)/3_render
+# @mkdir -p $(OBJ_DIR)/4_exit
 
 clean:
 	@ make clean -C $(LIBFT_DIR) -s
+	@ make clean -C $(MLX_DIR) -s
 	@ $(RM) $(OBJ_DIR)
 	@ echo "$(RED)Deleting $(CLR_RMV)object files"
 
