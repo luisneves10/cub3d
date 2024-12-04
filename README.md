@@ -4,11 +4,11 @@
     cub3d/
     ├── libft/
     ├── src/
-    │   ├── 
-    │   ├── 
-    │   ├── 
-    │   ├── 
-    │   └── 
+    │   ├── 0_init
+    │   ├── 1_parsing
+    │   ├── 2_render
+    │   ├── 3_movement
+    │   └── 4_exit
     ├── includes/
     │   └── cub3d.h
     └── Makefile
