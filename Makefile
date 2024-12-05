@@ -29,7 +29,6 @@ LIBFT		= libft/libft.a
 MLX_DIR		= minilibx-linux/
 MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
 
-
 SRC_FILES	= main.c error.c \
 			  0_init/0_init_data.c 0_init/0_init_mlx.c 0_init/0_init_textures.c \
 			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c
@@ -59,7 +58,11 @@ CYAN 	= \033[1;36m
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+# $(OBJ_DIR)%.o : $(SRC_DIR)%.c
+# 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+# Build object files, ensuring directories exist
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJ_DIR) $(OBJ)
@@ -80,14 +83,18 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 	@ echo "${R_BLUE}              by ${BLUE}daduarte ${R_BLUE}& ${BLUE}luibarbo"
 	@ echo "${CLR_RMV}"
 
+# $(OBJ_DIR):
+# 	@mkdir -p $(OBJ_DIR)
+# 	@mkdir -p $(OBJ_DIR)/0_init
+# 	@mkdir -p $(OBJ_DIR)/1_parsing
+# 	@mkdir -p $(OBJ_DIR)/2_movement
+# 	@mkdir -p $(OBJ_DIR)/3_render
+# 	@mkdir -p $(OBJ_DIR)/4_exit
+
+ # Create object directories dynamically
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/0_init
-
-# @mkdir -p $(OBJ_DIR)/1_parsing
-# @mkdir -p $(OBJ_DIR)/2_movement
-# @mkdir -p $(OBJ_DIR)/3_render
-# @mkdir -p $(OBJ_DIR)/4_exit
+	@mkdir -p $(addprefix $(OBJ_DIR), $(sort $(dir $(SRC_FILES))))
 
 clean:
 	@ make clean -C $(LIBFT_DIR) -s
