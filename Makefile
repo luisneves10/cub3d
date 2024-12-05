@@ -43,7 +43,7 @@ OBJ			= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 #	COLORS                                                                     #
 # ============================================================================ #
 
-CLR_RMV	= \033[0m
+RESET	= \033[0m
 RED		= \033[1;31m
 GREEN	= \033[1;32m
 R_GREEN	= \033[0;32m
@@ -58,17 +58,13 @@ CYAN 	= \033[1;36m
 
 all: $(NAME)
 
-# $(OBJ_DIR)%.o : $(SRC_DIR)%.c
-# 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
-# Build object files, ensuring directories exist
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@ make -C $(LIBFT_DIR) -s
 	@ make -C $(MLX_DIR) -s
-	@ echo "Compilating ${YELLOW}$(NAME) ${CLR_RMV}..."
+	@ echo "Compilating ${YELLOW}$(NAME) ${RESET}..."
 	@ $(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME) $(LIBFLAGS) $(LIBFT)
 	@ echo " "
 	@ echo "${BLUE}                     █████      ████████      █████"
@@ -81,32 +77,30 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 	@ echo " ░░░░░░    ░░░░░░░░ ░░░░░░░░   ░░░░░░░░   ░░░░░░░░ "
 	@ echo " "
 	@ echo "${R_BLUE}              by ${BLUE}daduarte ${R_BLUE}& ${BLUE}luibarbo"
-	@ echo "${CLR_RMV}"
+	@ echo "${RESET}"
 
-# $(OBJ_DIR):
-# 	@mkdir -p $(OBJ_DIR)
-# 	@mkdir -p $(OBJ_DIR)/0_init
-# 	@mkdir -p $(OBJ_DIR)/1_parsing
-# 	@mkdir -p $(OBJ_DIR)/2_movement
-# 	@mkdir -p $(OBJ_DIR)/3_render
-# 	@mkdir -p $(OBJ_DIR)/4_exit
-
- # Create object directories dynamically
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(addprefix $(OBJ_DIR), $(sort $(dir $(SRC_FILES))))
+	@ mkdir -p $(OBJ_DIR)
+	@ mkdir -p $(addprefix $(OBJ_DIR), $(sort $(dir $(SRC_FILES))))
 
 clean:
 	@ make clean -C $(LIBFT_DIR) -s
 	@ make clean -C $(MLX_DIR) -s
 	@ $(RM) $(OBJ_DIR)
-	@ echo "$(RED)Deleting $(CLR_RMV)object files"
+	@ echo "$(RED)Deleting $(RESET)object files"
 
 fclean: clean
 	@ make fclean -C $(LIBFT_DIR) -s
 	@ $(RM) $(NAME)
-	@ echo "$(RED)Deleting $(CLR_RMV)binary"
+	@ echo "$(RED)Deleting $(RESET)binary"
+
+mlx:
+	@ echo "[$(CYAN)minilibx$(RESET)] Downloading ..."
+	@ wget -q https://cdn.intra.42.fr/document/document/25858/minilibx-linux.tgz
+	@ tar -xvf minilibx-linux.tgz > /dev/null
+	@ $(RM) minilibx-linux.tgz
+	@ echo "[$(CYAN)minilibx$(RESET)] Download complete!"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx
