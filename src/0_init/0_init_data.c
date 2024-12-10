@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/04 16:29:55 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/10 10:59:24 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	init_win(t_win *win)
 static void	init_mapinfo(t_mapinfo *mapinfo)
 {
 	mapinfo->nb_lines = 0;
-	mapinfo->fd = 0;
 	mapinfo->path = NULL;
 	mapinfo->file = NULL;
 }
