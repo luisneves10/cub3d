@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 12:28:48 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:21:54 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ int	copy_file(t_data *data)
 
 int	parse_file(t_data *data, char **argv)
 {
-	int i = 0;
-	int j = 0;
-
 	if (!is_dir(argv[1]) || !is_cub_extension(argv[1]) || !valid_file(argv[1]))
 		return (INVALID);
 	data->mapinfo.path = argv[1];
