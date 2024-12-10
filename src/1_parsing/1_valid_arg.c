@@ -20,7 +20,7 @@ int	is_dir(char *arg)
 	if (fd >= 0)
 	{
 		close (fd);
-		return (error_msg("File", "is a directory", 0));
+		return (error_msg("File: is a directory", 0));
 	}
 	return (1);
 }
@@ -32,8 +32,7 @@ int	valid_file(char *arg)
 	if (fd < 0)
 	{
 		close(fd);
-		return (error_msg("File",
-				"Either the file doesn't exist or you don't"
+		return (error_msg("File: Either the file doesn't exist or you don't"
 					" have permission to open it", 0));
 	}
 	return (1);
@@ -49,5 +48,5 @@ int	is_cub_extension(char *arg)
 	if (arg[i] == 'b' && arg[i - 1] == 'u' && arg[i - 2] == 'c'
 		&& arg[i - 3] == '.')
 		return (1);
-	return (error_msg("File", "only .cub files are valid", 0));
+	return (error_msg("File: only .cub files are valid", 0));
 }

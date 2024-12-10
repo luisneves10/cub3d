@@ -12,14 +12,9 @@
 
 #include "cub3d.h"
 
-int	error_msg(char *topic, char *msg, int code)
+int	error_msg(char *msg, int code)
 {
 	ft_putendl_fd("Error", 2);
-	if (topic)
-	{
-		ft_putstr_fd(topic, 2);
-		ft_putstr_fd(": ", 2);
-	}
 	if (msg)
 		ft_putendl_fd(msg, 2);
 	return (code);

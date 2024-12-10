@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	(void)argv;
 	if (argc != 2)
-		return (error_msg("Usage", "./cub3d <map_file.cub>", 1));
+		return (error_msg("Usage: ./cub3d <map_file.cub>", 1));
 	init_data(&data);
 	if (parse_file(&data, argv) != 0)
 		return (1);
