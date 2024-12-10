@@ -95,11 +95,15 @@ fclean: clean
 	@ echo "$(RED)Deleting $(RESET)binary"
 
 mlx:
-	@ echo "[$(CYAN)minilibx$(RESET)] Downloading ..."
-	@ wget -q https://cdn.intra.42.fr/document/document/25858/minilibx-linux.tgz
-	@ tar -xvf minilibx-linux.tgz > /dev/null
-	@ $(RM) minilibx-linux.tgz
-	@ echo "[$(CYAN)minilibx$(RESET)] Download complete!"
+	@ if [ -d "$(MLX_DIR)" ]; then \
+		echo "[$(CYAN)minilibx$(RESET)] Folder already exists, skipping download."; \
+	else \
+		echo "[$(CYAN)minilibx$(RESET)] Downloading ..."; \
+		wget -q https://cdn.intra.42.fr/document/document/25858/minilibx-linux.tgz; \
+		tar -xvf minilibx-linux.tgz > /dev/null; \
+		$(RM) minilibx-linux.tgz; \
+		echo "[$(CYAN)minilibx$(RESET)] Download complete!"; \
+	fi
 
 re: fclean all
 
