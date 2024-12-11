@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:36:40 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:50:21 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int	parse_map(t_data *data)
 	if (!data->mapinfo.map)
 		return (INVALID);
 	copy_map(data);
+	if (valid_map_chars(data) == INVALID)
+		return (INVALID);
+	if (validate_walls(data->mapinfo.map, data->mapinfo.nb_lines) == INVALID)
+		return (INVALID);
 	print_map(data);
 	return (VALID);
 }

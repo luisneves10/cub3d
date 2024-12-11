@@ -6,11 +6,35 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:47:22 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/11 13:35:26 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:40:51 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void free_map(char **map, int height)
+{
+    int i;
+
+    if (!map)
+        return;
+    i = 0;
+    while (i < height)
+    {
+        if (map[i])
+            free(map[i]);
+        i++;
+    }
+    free(map);
+}
+
+int is_valid_char(char c)
+{
+    if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W'
+        && !is_whitespace(c))
+        return (INVALID);
+    return (VALID);
+}
 
 int map_height(t_data *data)
 {
@@ -25,26 +49,4 @@ int map_height(t_data *data)
         i ++;
     }
     return (height);
-}
-
-void    copy_map(t_data *data)
-{
-    int i;
-    int height;
-    int width;
-
-    i = 6;
-    height = 0;
-	while (data->mapinfo.file[i])
-	{
-        width = 0;
-        data->mapinfo.map[height] = ft_calloc(ft_strlen(data->mapinfo.file[i]) + 1, sizeof(char));
-		while (width < ft_strlen(data->mapinfo.file[i]))
-		{
-			data->mapinfo.map[height][width] = data->mapinfo.file[i][width];
-            width ++;
-		}
-        height ++;
-        i ++;
-	}
 }

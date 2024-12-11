@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 10:59:24 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:32:12 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->nb_lines = 0;
 	mapinfo->path = NULL;
 	mapinfo->file = NULL;
+	mapinfo->player.x = -1;
+	mapinfo->player.y = -1;
 }
 
 void	init_data(t_data *data)

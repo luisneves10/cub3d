@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/11 12:58:28 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:42:03 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct s_win
 	int		h; // HEIGHT
 }	t_win;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
 typedef struct s_texture
 {
 	char	orientation;
@@ -58,6 +64,7 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
+	t_point	player;
 	//int	colors[2][3];
 	t_texture	texture[6];
 }	t_mapinfo;
@@ -73,6 +80,8 @@ typedef struct s_data
 /* ========================================================================== */
 
 int		error_msg(char *msg, int code);
+int		is_whitespace(char c);
+void 	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
@@ -84,6 +93,10 @@ int		is_texture(char *str);
 int		get_text_path(t_data *data, int k);
 int 	map_height(t_data *data);
 void    copy_map(t_data *data);
+int 	valid_map_chars(t_data *data);
+int 	valid_map_chars(t_data *data);
+int 	validate_walls(char **map, int height);
+int 	is_valid_char(char c);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);
