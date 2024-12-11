@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 14:21:54 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:36:40 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void    print_map(t_data *data) //remove
+{
+    int i = 0;
+    int j = 0;
+
+    while (data->mapinfo.map[i])
+	{
+        j = 0;
+		while (data->mapinfo.map[i][j])
+		{
+			printf("%c ", data->mapinfo.map[i][j]);
+            j ++;
+		}
+		printf("\n");
+        i ++;
+	}
+}
 
 int	parse_textures(t_data *data)
 {
@@ -27,11 +45,17 @@ int	parse_textures(t_data *data)
 	}
 	return (VALID);
 }
-/*
+
 int	parse_map(t_data *data)
 {
-
-} */
+	data->mapinfo.nb_lines = map_height(data);
+	data->mapinfo.map = ft_calloc(data->mapinfo.nb_lines + 1, sizeof(char *));
+	if (!data->mapinfo.map)
+		return (INVALID);
+	copy_map(data);
+	print_map(data);
+	return (VALID);
+}
 
 int	copy_file(t_data *data)
 {
@@ -63,8 +87,7 @@ int	parse_file(t_data *data, char **argv)
 	copy_file(data);
 	 if (parse_textures(data) == INVALID)
 		return (INVALID);
-	/*
 	if (parse_map(data) == INVALID)
-		return (INVALID); */
+		return (INVALID);
 	return (VALID);
 }

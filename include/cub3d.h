@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 12:22:52 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:58:28 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	init_mlx(t_data *data);
 int		parse_file(t_data *data, char **argv);
 int		is_texture(char *str);
 int		get_text_path(t_data *data, int k);
+int 	map_height(t_data *data);
+void    copy_map(t_data *data);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);
