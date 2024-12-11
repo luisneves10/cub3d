@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/04 11:10:12 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:22:52 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <X11/keysym.h>
@@ -31,6 +32,11 @@
 
 # define TEXTURE_SIZE 64
 
+# define INVALID 0
+# define VALID 1
+# define FAILURE 1
+# define SUCCESS 0
+
 typedef struct s_win
 {
 	void	*mlx_ptr;
@@ -39,19 +45,27 @@ typedef struct s_win
 	int		h; // HEIGHT
 }	t_win;
 
+typedef struct s_texture
+{
+	char	orientation;
+	char	*path;
+	int		color[3];
+}	t_texture;
+
 typedef struct s_mapinfo
 {
 	int		nb_lines;
-	int		fd;
 	char	*path;
-	char	**file; // FILE COPY
+	char	**file;
+	char	**map;
+	//int	colors[2][3];
+	t_texture	texture[6];
 }	t_mapinfo;
 
 typedef struct s_data
 {
 	t_win		win;
 	t_mapinfo	mapinfo;
-
 }	t_data;
 
 /* ========================================================================== */
@@ -66,6 +80,8 @@ void	init_mlx(t_data *data);
 
 /*	PARSE ------------------------------------------------------------------- */
 int		parse_file(t_data *data, char **argv);
+int		is_texture(char *str);
+int		get_text_path(t_data *data, int k);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);

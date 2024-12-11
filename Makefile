@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+         #
+#    By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 11:01:48 by luibarbo          #+#    #+#              #
-#    Updated: 2024/12/04 11:04:12 by luibarbo         ###   ########.fr        #
+#    Updated: 2024/12/10 12:24:56 by daduarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
 
 SRC_FILES	= main.c error.c \
 			  0_init/0_init_data.c 0_init/0_init_mlx.c 0_init/0_init_textures.c \
-			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c
+			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c \
+			  1_parsing/1_parse_textures_utils.c
 
 SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
