@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_init_data.c                                      :+:      :+:    :+:   */
+/*   1_valid_images.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/11 16:32:12 by daduarte         ###   ########.fr       */
+/*   Created: 2024/12/12 12:23:16 by daduarte          #+#    #+#             */
+/*   Updated: 2024/12/12 12:23:33 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_win(t_win *win)
+int	is_xpm_extension(char *arg)
 {
-	win->mlx_ptr = NULL;
-	win->win_ptr = NULL;
-	win->w = WIN_WIDTH;
-	win->h = WIN_HEIGHT;
-}
+	int	i;
 
-static void	init_mapinfo(t_mapinfo *mapinfo)
-{
-	mapinfo->nb_lines = 0;
-	mapinfo->path = NULL;
-	mapinfo->file = NULL;
-	mapinfo->player.x = -1;
-	mapinfo->player.y = -1;
-}
-
-void	init_data(t_data *data)
-{
-	init_win(&data->win);
-	init_mapinfo(&data->mapinfo);
+	i = 0;
+	while (arg[i + 1])
+		i++;
+	if (arg[i] == 'm' && arg[i - 1] == 'p' && arg[i - 2] == 'x'
+		&& arg[i - 3] == '.')
+		return (1);
+	return (error_msg("File: only .xpm images are valid", 0));
 }

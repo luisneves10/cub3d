@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:35:15 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/10 12:25:35 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:06:35 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ int	is_whitespace(char c)
 		return (0);
 }
 
-int	valid_rgb(int	*color)
+int	valid_rgb(int *color, int size)
 {
 	int	i;
 
 	i = 0;
-	while (color[i])
+	if (size != 3)
+		return (INVALID);
+	while (i < 3)
 	{
 		if (color[i] < 0 || color[i] > 255)
 			return (INVALID);
 		i ++;
 	}
-	if (i != 3)
-		return (INVALID);
 	return (VALID);
 }
 
@@ -60,8 +60,8 @@ int	is_valid_color(t_texture *texture)
 		texture->color[i] = ft_atoi(rgb[i]);
 		i ++;
 	}
-	if (valid_rgb(texture->color) == INVALID)
-		return (free(rgb), INVALID);//free_split
+	if (valid_rgb(texture->color, i) == INVALID)
+	 	return (free(rgb), INVALID);//free_split
 	return (VALID);
 }
 
@@ -79,11 +79,15 @@ int	get_text_path(t_data *data, int k)
 	while (is_whitespace(str[i]))
 		i ++;
 	data->mapinfo.texture[k].path = ft_strdup(str + i);
-	if (data->mapinfo.texture[k].orientation == 'C'
-		|| data->mapinfo.texture[k].orientation == 'F')
+	if (data->mapinfo.texture[k].orientation == 'F')
 	{
 		if (is_valid_color(&data->mapinfo.texture[k]) == INVALID)
-			return (INVALID);
+			return (error_msg("Invalid floor color", INVALID));
+	}
+	if (data->mapinfo.texture[k].orientation == 'C')
+	{
+		if (is_valid_color(&data->mapinfo.texture[k]) == INVALID)
+			return (error_msg("Invalid ceiling color", INVALID));
 	}
 	return (VALID);
 }

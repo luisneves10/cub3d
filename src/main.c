@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 10:36:13 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:42:19 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 	if (parse_file(&data, argv) == INVALID)
 		return (INVALID);
 	ft_putendl_fd(BOLD ULINE GREEN"VALID FILE"RESET, 1); // REMOVE
-	init_mlx(&data);
+	//init_mlx(&data);
 	// init texturas;
 	// render images;
-	mlx_loop(data.win.mlx_ptr);
+	//mlx_loop(data.win.mlx_ptr);
 }

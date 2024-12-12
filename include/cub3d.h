@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/10 12:22:52 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:24:47 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 # define INVALID 0
 # define VALID 1
-# define FAILURE 1
-# define SUCCESS 0
+# define FAILURE 0
+# define SUCCESS 1
 
 typedef struct s_win
 {
@@ -44,6 +44,12 @@ typedef struct s_win
 	int		w; // WIDTH
 	int		h; // HEIGHT
 }	t_win;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_texture
 {
@@ -58,6 +64,7 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
+	t_point	player;
 	//int	colors[2][3];
 	t_texture	texture[6];
 }	t_mapinfo;
@@ -73,6 +80,8 @@ typedef struct s_data
 /* ========================================================================== */
 
 int		error_msg(char *msg, int code);
+int		is_whitespace(char c);
+void 	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
@@ -82,10 +91,19 @@ void	init_mlx(t_data *data);
 int		parse_file(t_data *data, char **argv);
 int		is_texture(char *str);
 int		get_text_path(t_data *data, int k);
+int 	map_height(t_data *data);
+int    copy_map(t_data *data);
+int 	valid_map_chars(t_data *data);
+int 	valid_map_chars(t_data *data);
+int 	validate_walls(char **map, int height);
+int 	is_valid_char(char c);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);
 int		valid_file(char *arg);
 int		is_cub_extension(char *arg);
+
+/*	VALID TEXTURES --------------------------------------------------------------- */
+int		is_xpm_extension(char *arg);
 
 #endif
