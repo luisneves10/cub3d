@@ -6,7 +6,7 @@
 #    By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 11:01:48 by luibarbo          #+#    #+#              #
-#    Updated: 2024/12/12 12:25:07 by daduarte         ###   ########.fr        #
+#    Updated: 2024/12/12 17:18:16 by daduarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_FILES	= main.c error.c \
 			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c \
 			  1_parsing/1_parse_textures_utils.c 1_parsing/1_parse_map_utils.c \
 			  1_parsing/1_parse_map.c 1_parsing/1_valid_images.c \
+			  1_parsing/1_connected_map.c
 
 SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
