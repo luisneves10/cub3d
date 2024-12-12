@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/11 17:42:03 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:24:47 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 # define INVALID 0
 # define VALID 1
-# define FAILURE 1
-# define SUCCESS 0
+# define FAILURE 0
+# define SUCCESS 1
 
 typedef struct s_win
 {
@@ -92,7 +92,7 @@ int		parse_file(t_data *data, char **argv);
 int		is_texture(char *str);
 int		get_text_path(t_data *data, int k);
 int 	map_height(t_data *data);
-void    copy_map(t_data *data);
+int    copy_map(t_data *data);
 int 	valid_map_chars(t_data *data);
 int 	valid_map_chars(t_data *data);
 int 	validate_walls(char **map, int height);
@@ -102,5 +102,8 @@ int 	is_valid_char(char c);
 int		is_dir(char *arg);
 int		valid_file(char *arg);
 int		is_cub_extension(char *arg);
+
+/*	VALID TEXTURES --------------------------------------------------------------- */
+int		is_xpm_extension(char *arg);
 
 #endif

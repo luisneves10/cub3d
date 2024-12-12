@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:40:09 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/11 17:40:55 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:14:19 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,20 @@ int valid_map_chars(t_data *data)
     return (VALID);
 }
 
-void    copy_map(t_data *data)
+int    copy_map(t_data *data)
 {
     int i;
     int height;
-    int width;
 
     i = 6;
     height = 0;
 	while (data->mapinfo.file[i])
 	{
-        width = 0;
-        data->mapinfo.map[height] = ft_calloc(ft_strlen(data->mapinfo.file[i]) + 1, sizeof(char));
-		while (width < ft_strlen(data->mapinfo.file[i]))
-		{
-			data->mapinfo.map[height][width] = data->mapinfo.file[i][width];
-            width ++;
-		}
+        data->mapinfo.map[height] = ft_strdup(data->mapinfo.file[i]);
         height ++;
         i ++;
 	}
+    if (height == 0)
+        return (INVALID);
+    return (VALID);
 }

@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:47:22 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/11 17:40:51 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:09:05 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void free_map(char **map, int height)
 int is_valid_char(char c)
 {
     if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W'
-        && !is_whitespace(c))
+        && !is_whitespace(c))//verificar se e whitespace ou so ' '
         return (INVALID);
     return (VALID);
 }
