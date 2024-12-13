@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/12 17:18:38 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/13 00:13:15 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 # include "colors.h"
 # include "../minilibx-linux/mlx.h"
 
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_ESC 65307
+
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 
@@ -37,6 +45,25 @@
 # define FAILURE 0
 # define SUCCESS 1
 
+# define MOVE_SPEED 0.25
+
+typedef struct s_player {
+    double player_x;
+    double player_y;
+    double player_dir_x;
+    double player_dir_y;
+    double plane_x;
+    double plane_y;
+} t_player;
+
+typedef struct s_img {
+    void    *img_ptr;
+    char    *data;
+    int     bpp;
+    int     size_line;
+    int     endian;
+} t_img;
+
 typedef struct s_win
 {
 	void	*mlx_ptr;
@@ -44,6 +71,27 @@ typedef struct s_win
 	int		w; // WIDTH
 	int		h; // HEIGHT
 }	t_win;
+
+typedef struct s_ray
+{
+	double	camera_x;
+    double	ray_dir_x;
+    double	ray_dir_y;
+    int		map_x;
+    int		map_y;
+    double	delta_dist_x;
+    double	delta_dist_y;
+    double	hit;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_wall_dist;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
 
 typedef struct s_point
 {
@@ -61,7 +109,6 @@ typedef struct s_flags
 	int	w;
 } t_flags;
 
-
 typedef struct s_texture
 {
 	char	orientation;
@@ -75,8 +122,8 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
-	t_point	player;
-	//int	colors[2][3];
+	t_point	start_pos;
+	char	orientation;
 	t_texture	texture[6];
 }	t_mapinfo;
 
@@ -84,6 +131,8 @@ typedef struct s_data
 {
 	t_win		win;
 	t_mapinfo	mapinfo;
+	t_player	player;
+	t_img		img;
 }	t_data;
 
 /* ========================================================================== */
@@ -98,6 +147,7 @@ void 	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
+void	init_player(t_data *data);
 void	init_mlx(t_data *data);
 
 /*	PARSE ------------------------------------------------------------------- */
@@ -117,7 +167,12 @@ int		is_dir(char *arg);
 int		valid_file(char *arg);
 int		is_cub_extension(char *arg);
 
-/*	VALID TEXTURES --------------------------------------------------------------- */
+/*	VALID TEXTURES ---------------------------------------------------------- */
 int		is_xpm_extension(char *arg);
+
+
+/*	GAME      --------------------------------------------------------------- */
+int 	handle_keypress(int keycode, t_data *data);
+void 	raycast(t_data *data);
 
 #endif

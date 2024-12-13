@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:40:09 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/12 15:34:17 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/12 22:05:11 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,12 @@ int valid_map_chars(t_data *data)
                 || data->mapinfo.map[height][width] == 'S'
                 || data->mapinfo.map[height][width] == 'E'
                 || data->mapinfo.map[height][width] == 'W')
-                player_count ++;
+                {
+                    data->mapinfo.start_pos.x = width;
+                    data->mapinfo.start_pos.y = height;
+                    data->mapinfo.orientation = data->mapinfo.map[height][width];
+                    player_count ++;
+                }
             width ++;
         }
         height ++;
