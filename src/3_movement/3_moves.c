@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_moves.c                                          :+:      :+:    :+:   */
+/*   3_moves.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:30:43 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 10:48:26 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:18:46 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,11 @@ int handle_keypress(int keycode, t_data *data)
 	if (keycode == KEY_RIGHT)
 		rotate_right(data);
 	return (0);
+}
+
+void	keypresses(t_data *data)
+{
+	mlx_hook(data->win.win_ptr, KeyPress, KeyPressMask, handle_keypress, data);
+	mlx_hook(data->win.win_ptr, DestroyNotify,
+		StructureNotifyMask, quit_program, data);
 }

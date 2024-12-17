@@ -171,8 +171,12 @@ int		is_cub_extension(char *arg);
 int		is_xpm_extension(char *arg);
 
 
-/*	GAME      --------------------------------------------------------------- */
-int 	handle_keypress(int keycode, t_data *data);
+/*	GAME -------------------------------------------------------------------- */
+void	keypresses(t_data *data);
 void 	raycast(t_data *data);
+
+/*	EXIT -------------------------------------------------------------------- */
+void	clean_and_exit(t_data *data, int code);
+int		quit_program(t_data *data);
 
 #endif
