@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+         #
+#    By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 11:01:48 by luibarbo          #+#    #+#              #
-#    Updated: 2024/12/12 12:25:07 by daduarte         ###   ########.fr        #
+#    Updated: 2024/12/17 10:24:20 by daduarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,9 @@ LIBFT		= libft/libft.a
 MLX_DIR		= minilibx-linux/
 MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
 
-SRC_FILES	= main.c error.c \
-			  0_init/0_init_data.c 0_init/0_init_mlx.c 0_init/0_init_textures.c \
-			  1_parsing/1_parse_file.c 1_parsing/1_valid_arg.c \
-			  1_parsing/1_parse_textures_utils.c 1_parsing/1_parse_map_utils.c \
-			  1_parsing/1_parse_map.c 1_parsing/1_valid_images.c \
+SRC	= $(shell find $(SRC_DIR) -name '*.c')
 
-SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
-
-OBJ_FILES	= $(SRC_FILES:.c=.o)
-
-OBJ			= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+OBJ			= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
 # ============================================================================ #
 #	COLORS                                                                     #
@@ -61,13 +53,14 @@ CYAN 	= \033[1;36m
 all: $(NAME)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR)
+	@ mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME): $(OBJ_DIR) $(OBJ)
+$(NAME): $(OBJ) | $(OBJ_DIR)
 	@ make -C $(LIBFT_DIR) -s
 	@ make -C $(MLX_DIR) -s
 	@ echo "Compilating ${YELLOW}$(NAME) ${RESET}..."
-	@ $(CC) $(CFLAGS) $(INCLUDE) $(SRC) -o $(NAME) $(LIBFLAGS) $(LIBFT)
+	@ $(CC) $(CFLAGS) $(INCLUDE) $(OBJ) -o $(NAME) $(LIBFLAGS) $(LIBFT)
 	@ echo " "
 	@ echo "${BLUE}                     █████      ████████      █████"
 	@ echo "                    ░░███      ███░░░░███    ░░███ "
@@ -83,7 +76,6 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 
 $(OBJ_DIR):
 	@ mkdir -p $(OBJ_DIR)
-	@ mkdir -p $(addprefix $(OBJ_DIR), $(sort $(dir $(SRC_FILES))))
 
 clean:
 	@ make clean -C $(LIBFT_DIR) -s

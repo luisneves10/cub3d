@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:47:22 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/12 11:09:05 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:27:36 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,39 @@
 
 void free_map(char **map, int height)
 {
-    int i;
+	int i;
 
-    if (!map)
-        return;
-    i = 0;
-    while (i < height)
-    {
-        if (map[i])
-            free(map[i]);
-        i++;
-    }
-    free(map);
+	if (!map)
+		return;
+	i = 0;
+	while (i < height)
+	{
+		if (map[i])
+			free(map[i]);
+		i++;
+	}
+	free(map);
 }
 
 int is_valid_char(char c)
 {
-    if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W'
-        && !is_whitespace(c))//verificar se e whitespace ou so ' '
-        return (INVALID);
-    return (VALID);
+	if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W'
+		&& !is_whitespace(c))//verificar se e whitespace ou so ' '
+		return (INVALID);
+	return (VALID);
 }
 
 int map_height(t_data *data)
 {
-    int i;
-    int height;
+	int i;
+	int height;
 
-    i = 6;
-    height = 0;
-    while (data->mapinfo.file[i])
-    {
-        height ++;
-        i ++;
-    }
-    return (height);
+	i = 6;
+	height = 0;
+	while (data->mapinfo.file[i])
+	{
+		height ++;
+		i ++;
+	}
+	return (height);
 }
