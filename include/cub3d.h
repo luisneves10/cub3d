@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/13 00:13:15 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:57:39 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@
 # define MOVE_SPEED 0.25
 
 typedef struct s_player {
-    double player_x;
-    double player_y;
-    double player_dir_x;
-    double player_dir_y;
-    double plane_x;
-    double plane_y;
-} t_player;
+	double player_x;
+	double player_y;
+	double player_dir_x;
+	double player_dir_y;
+	double plane_x;
+	double plane_y;
+}	t_player;
 
 typedef struct s_img {
-    void    *img_ptr;
-    char    *data;
-    int     bpp;
-    int     size_line;
-    int     endian;
-} t_img;
+	void    *img_ptr;
+	char    *data;
+	int     bpp;
+	int     size_line;
+	int     endian;
+}	t_img;
 
 typedef struct s_win
 {
@@ -75,13 +75,13 @@ typedef struct s_win
 typedef struct s_ray
 {
 	double	camera_x;
-    double	ray_dir_x;
-    double	ray_dir_y;
-    int		map_x;
-    int		map_y;
-    double	delta_dist_x;
-    double	delta_dist_y;
-    double	hit;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	hit;
 	int		step_x;
 	int		step_y;
 	double	side_dist_x;
