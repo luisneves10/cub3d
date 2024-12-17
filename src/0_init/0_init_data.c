@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/13 00:11:29 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:51:47 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,42 +31,42 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 
 void set_player_orientation(t_data *data)
 {
-    if (data->mapinfo.orientation == 'N')
+	if (data->mapinfo.orientation == 'N')
 	{
-        data->player.player_dir_x = 0;
-        data->player.player_dir_y = -1;
-        data->player.plane_x = 0.66;
-        data->player.plane_y = 0;
-    }
+		data->player.player_dir_x = 0;
+		data->player.player_dir_y = -1;
+		data->player.plane_x = 0.66;
+		data->player.plane_y = 0;
+	}
 	else if (data->mapinfo.orientation == 'S')
 	{
-        data->player.player_dir_x = 0;
-        data->player.player_dir_y = 1;
-        data->player.plane_x = -0.66;
-        data->player.plane_y = 0;
-    }
+		data->player.player_dir_x = 0;
+		data->player.player_dir_y = 1;
+		data->player.plane_x = -0.66;
+		data->player.plane_y = 0;
+	}
 	else if (data->mapinfo.orientation == 'E')
 	{
-        data->player.player_dir_x = 1;
-       	data->player.player_dir_y = 0;
-        data->player.plane_x = 0;
-        data->player.plane_y = 0.66;
-    }
+		data->player.player_dir_x = 1;
+		data->player.player_dir_y = 0;
+		data->player.plane_x = 0;
+		data->player.plane_y = 0.66;
+	}
 	else if (data->mapinfo.orientation == 'W')
 	{
-        data->player.player_dir_x = -1;
-        data->player.player_dir_y = 0;
-        data->player.plane_x = 0;
-        data->player.plane_y = -0.66;
-    }
+		data->player.player_dir_x = -1;
+		data->player.player_dir_y = 0;
+		data->player.plane_x = 0;
+		data->player.plane_y = -0.66;
+	}
 }
 
 void	init_player(t_data *data)
 {
 	t_player	player;
-	
-	player.player_x = data->mapinfo.start_pos.x;
-	player.player_y = data->mapinfo.start_pos.y;
+
+	player.player_x = data->mapinfo.start_pos.x + (0.49);//VERIFICAR O CENTRO DO QUADRADO
+	player.player_y = data->mapinfo.start_pos.y + (0.49);//VERIFICAR O CENTRO DO QUADRADO
 	data->player = player;
 	set_player_orientation(data);
 	printf("ORIENTATION: %c\n", data->mapinfo.orientation);

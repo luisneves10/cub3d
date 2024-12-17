@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 10:57:39 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:55:16 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ typedef struct s_player {
 	double plane_y;
 }	t_player;
 
-typedef struct s_img {
-	void    *img_ptr;
-	char    *data;
-	int     bpp;
-	int     size_line;
-	int     endian;
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		w;
+	int		h;
+	int		bpp;
+	int		endian;
+	int		line_len;
 }	t_img;
 
 typedef struct s_win
@@ -114,6 +117,8 @@ typedef struct s_texture
 	char	orientation;
 	char	*path;
 	int		color[3];
+	t_img	img;
+	unsigned int 		buffer[TEXTURE_SIZE * TEXTURE_SIZE];
 }	t_texture;
 
 typedef struct s_mapinfo
@@ -122,6 +127,7 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
+	int		buffer[WIN_HEIGHT][WIN_WIDTH];
 	t_point	start_pos;
 	char	orientation;
 	t_texture	texture[6];
@@ -149,18 +155,20 @@ void 	free_map(char **map, int height);
 void	init_data(t_data *data);
 void	init_player(t_data *data);
 void	init_mlx(t_data *data);
+void	init_textures(t_data *data);
 
 /*	PARSE ------------------------------------------------------------------- */
 int		parse_file(t_data *data, char **argv);
 int		is_texture(char *str);
 int		get_text_path(t_data *data, int k);
 int 	map_height(t_data *data);
-int    	copy_map(t_data *data);
+int		copy_map(t_data *data);
 int 	valid_map_chars(t_data *data);
 int 	valid_map_chars(t_data *data);
 int 	validate_walls(char **map, int height);
 int 	is_valid_char(char c);
 int		check_file(char *str);
+int		valid_texture(t_texture texture);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);

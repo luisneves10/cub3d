@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 10:51:13 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:03:00 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,38 @@
 void	init_ray(t_data *data, int x, t_ray *ray);
 void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
-void	calculate_distance_and_height(t_data *data, t_ray *ray);
+void	calculate_distance_and_height(t_data *data, t_ray *ray, int x);
 void	draw_vertical_line(t_img *img, int x, t_ray *ray);
+
+void	get_texture_pixels(t_texture texture)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < TEXTURE_SIZE)
+	{
+		x = 0;
+		while (x < TEXTURE_SIZE)
+		{
+			//texture.buffer[TEXTURE_SIZE * y + x] = texture.img.addr + (y * texture.img.line_len + x * (texture.img.bpp / 8));
+			texture.buffer[TEXTURE_SIZE * y + x] = *(unsigned int *)((texture.img.addr + (y * texture.img.line_len) + (x * texture.img.bpp / 8)));
+			x ++;
+		}
+		y ++;
+	}
+}
+
+void	put_pixel_img(t_img img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+	{
+		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+		*(unsigned int *)dst = color;
+	}
+}
 
 void	raycast(t_data *data)
 {
@@ -32,8 +62,15 @@ void	raycast(t_data *data)
 		init_ray(data, x, &ray);
 		calculate_step_and_side_dist(data, &ray);
 		perform_dda(data, &ray);
-		calculate_distance_and_height(data, &ray);
-		draw_vertical_line(&data->img, x, &ray);
+		calculate_distance_and_height(data, &ray, x);
+		for (int k = 0; k < WIN_HEIGHT; k++)
+		{
+			for (int l = 0; l < WIN_WIDTH; l++)
+			{
+				put_pixel_img(data->img, l, k, data->mapinfo.buffer[k][l]);
+			}
+		}
+		//draw_vertical_line(&data->img, x, &ray);
 		x++;
 	}
 }
@@ -44,8 +81,8 @@ void put_pixel(t_img *img, int x, int y, int color)
 
 	if (x < 0 || y < 0 || x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return;
-	index = (y * img->size_line) + (x * (img->bpp / 8));
-	*(int *)(img->data + index) = color;
+	index = (y * img->line_len) + (x * (img->bpp / 8));
+	*(int *)(img->addr + index) = color;
 }
 
 void	init_ray(t_data *data, int x, t_ray *ray)
@@ -112,8 +149,13 @@ void	perform_dda(t_data *data, t_ray *ray)
 	}
 }
 
-void	calculate_distance_and_height(t_data *data, t_ray *ray)
+void	calculate_distance_and_height(t_data *data, t_ray *ray, int x)
 {
+	double	wallX;
+	double	step;
+	double	texPos;
+	int		texX;
+
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - data->player.player_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
 	else
@@ -125,6 +167,30 @@ void	calculate_distance_and_height(t_data *data, t_ray *ray)
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
 		ray->draw_end = WIN_HEIGHT - 1;
+	if (ray->side == 0)
+		wallX = data->player.player_y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		wallX = data->player.player_x + ray->perp_wall_dist * ray->ray_dir_x;
+
+	wallX -= floor((wallX));
+	texX = (int)(wallX * (double)(TEXTURE_SIZE));
+	if(ray->side == 0 && ray->ray_dir_x > 0)
+		texX = TEXTURE_SIZE - texX - 1;
+	if(ray->side == 1 && ray->ray_dir_y < 0)
+		texX = TEXTURE_SIZE - texX - 1;
+	step = 1.0 * TEXTURE_SIZE / ray->line_height;
+	texPos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) * step;
+	int	y = ray->draw_start;
+	int	texY;
+	unsigned int	color;
+	while (y < ray->draw_end)
+	{
+		texY = (int)texPos & (TEXTURE_SIZE - 1);
+		texPos += step;
+		color = (unsigned int)data->mapinfo.texture[0].buffer[TEXTURE_SIZE * texY + texX];
+		data->mapinfo.buffer[y][x] = color;
+		y ++;
+	}
 }
 
 void	draw_vertical_line(t_img *img, int x, t_ray *ray)
@@ -133,9 +199,19 @@ void	draw_vertical_line(t_img *img, int x, t_ray *ray)
 	int	color;
 
 	if (ray->side == 0)
-		color = 0xFF0000;
+	{
+		if (ray->ray_dir_x > 0)
+			color = 0xFF0000;
+		else
+			color = 0xFFFF00;
+	}
 	else
-		color = 0x00FF00;
+	{
+		if (ray->ray_dir_y > 0)
+			color = 0x00FF00;
+		else
+			color = 0x0000FF;
+	}
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
