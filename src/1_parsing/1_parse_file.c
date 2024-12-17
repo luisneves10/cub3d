@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/12 17:25:00 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:58:16 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void    print_map(char **map) //remove
 {
-    int i = 0;
-    int j = 0;
+	int i = 0;
+	int j = 0;
 
-    while (map[i])
+	while (map[i])
 	{
-        j = 0;
+		j = 0;
 		while (map[i][j])
 		{
 			printf("%c", map[i][j]);
-            j ++;
+			j ++;
 		}
 		printf("\n");
-        i ++;
+		i ++;
 	}
 }
 
@@ -83,10 +83,10 @@ int	copy_file(t_data *data)
 	}
 	if (tmp[0] == '\0')
 	{
-        free(tmp);
-        close(fd);
-        return (error_msg("Empty file", INVALID));
-    }
+		free(tmp);
+		close(fd);
+		return (error_msg("Empty file", INVALID));
+	}
 	if (check_file(tmp) == INVALID)
 		return (free(tmp), close(fd), INVALID);
 	data->mapinfo.file = ft_split(tmp, '\n');
