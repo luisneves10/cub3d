@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 10:26:56 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:51:13 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray);
 void	draw_vertical_line(t_img *img, int x, t_ray *ray);
-void	clear_image(t_img *img, int width, int height, int color);
 
 void	raycast(t_data *data)
 {
 	int		x;
 	t_ray	ray;
 
-	clear_image(&data->img, WIN_WIDTH, WIN_HEIGHT, 0x000000);
+	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
+	data->img.img_ptr = mlx_new_image(data->win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
@@ -46,24 +46,6 @@ void put_pixel(t_img *img, int x, int y, int color)
 		return;
 	index = (y * img->size_line) + (x * (img->bpp / 8));
 	*(int *)(img->data + index) = color;
-}
-
-void	clear_image(t_img *img, int width, int height, int color)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			put_pixel(img, x, y, color);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	init_ray(t_data *data, int x, t_ray *ray)
