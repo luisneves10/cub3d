@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 10:58:02 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:33:16 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 {
 	t_data data;
 
-	(void)argv;
 	if (argc != 2)
 		return (error_msg("Usage: ./cub3d <map_file.cub>", 1));
 	init_data(&data);
@@ -32,10 +31,7 @@ int	main(int argc, char **argv)
 	init_player(&data);
 	ft_putendl_fd(BOLD ULINE GREEN"VALID FILE"RESET, 1); // REMOVE
 	init_mlx(&data);
-	data.img.img_ptr = mlx_new_image(data.win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	data.img.data = mlx_get_data_addr(data.img.img_ptr, &data.img.bpp, &data.img.size_line, &data.img.endian);
 	mlx_loop_hook(data.win.mlx_ptr, game_loop, &data);
-	mlx_key_hook(data.win.win_ptr, handle_keypress, &data);
-
+	keypresses(&data);
 	mlx_loop(data.win.mlx_ptr);
 }

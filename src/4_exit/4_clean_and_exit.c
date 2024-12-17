@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_init_mlx.c                                       :+:      :+:    :+:   */
+/*   4_clean_and_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 12:39:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 12:15:58 by luibarbo         ###   ########.fr       */
+/*   Created: 2024/12/17 12:08:00 by luibarbo          #+#    #+#             */
+/*   Updated: 2024/12/17 12:33:14 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_mlx(t_data *data)
+void	clean_and_exit(t_data *data, int code)
 {
-	data->win.mlx_ptr = mlx_init();
-	data->win.win_ptr = mlx_new_window(data->win.mlx_ptr,
-			data->win.w, data->win.h, "cub3d");
-	data->img.img_ptr = mlx_new_image(data->win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	data->img.data = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp, &data->img.size_line, &data->img.endian);
+	if (!data)
+		exit (code);
+	if (data->win.mlx_ptr && data->win.win_ptr)
+		mlx_destroy_window(data->win.mlx_ptr, data->win.win_ptr);
+	if (data->win.mlx_ptr)
+	{
+		mlx_destroy_display(data->win.mlx_ptr);
+		mlx_loop_end(data->win.mlx_ptr);
+		free(data->win.mlx_ptr);
+	}
+	// free de mais cenas;
+	exit (code);
+}
+
+int	quit_program(t_data *data)
+{
+	clean_and_exit(data, 0);
+	return (0);
 }
