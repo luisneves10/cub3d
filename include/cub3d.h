@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:23 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:51:13 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,9 @@ int		raycast(t_data *data);
 /*	EXIT -------------------------------------------------------------------- */
 void	clean_and_exit(t_data *data, int code);
 int		quit_program(t_data *data);
+void	free_split(char **split);
+void	free_all(t_data *data);
+void	free_paths(t_data *data);
+void	free_map(char **map, int height);
 
 #endif

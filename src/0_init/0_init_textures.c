@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:39:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 17:06:54 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:44:14 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	init_textures(t_data *data)
 			&(data->mapinfo.texture[i].img.line_len), &(data->mapinfo.texture[i].img.endian));
 		i++;
 	}
+	i = 0;
 }

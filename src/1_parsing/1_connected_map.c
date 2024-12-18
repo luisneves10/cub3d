@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_connected_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:10:14 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 12:41:26 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:24:26 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	is_connected_map(char *str, int i)
 	j = 0;
 	tmp = replace_newline(&str[i]);
 	map = ft_split(tmp, '\x05');
+	free(tmp);
 	while (map[j])
 		j ++;
 	flood_fill2(map, 0, 0, j);
@@ -82,12 +83,12 @@ int	is_connected_map(char *str, int i)
 		{
 			if (map[j][k] == '1' || map[j][k] == '0' || map[j][k] == 'N'
 				|| map[j][k] == 'S' || map[j][k] == 'E' || map[j][k] == 'W')
-				return (INVALID);
+				return (free_split(map), INVALID);
 			k ++;
 		}
 		j ++;
 	}
-	return (VALID);
+	return (free_split(map), VALID);
 }
 
 int	check_file_return_cases(char *str, int i, t_text_orientations *counters)
