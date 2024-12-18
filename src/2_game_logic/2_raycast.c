@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 17:03:00 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:21:28 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@ void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray, int x);
 void	draw_vertical_line(t_img *img, int x, t_ray *ray);
 
-void	get_texture_pixels(t_texture texture)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < TEXTURE_SIZE)
-	{
-		x = 0;
-		while (x < TEXTURE_SIZE)
-		{
-			//texture.buffer[TEXTURE_SIZE * y + x] = texture.img.addr + (y * texture.img.line_len + x * (texture.img.bpp / 8));
-			texture.buffer[TEXTURE_SIZE * y + x] = *(unsigned int *)((texture.img.addr + (y * texture.img.line_len) + (x * texture.img.bpp / 8)));
-			x ++;
-		}
-		y ++;
-	}
-}
-
 void	put_pixel_img(t_img img, int x, int y, int color)
 {
 	char	*dst;
@@ -49,13 +30,14 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 	}
 }
 
-void	raycast(t_data *data)
+int	raycast(t_data *data)
 {
 	int		x;
 	t_ray	ray;
 
-	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
 	data->img.img_ptr = mlx_new_image(data->win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp,
+									&data->img.line_len, &data->img.endian);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
@@ -63,26 +45,12 @@ void	raycast(t_data *data)
 		calculate_step_and_side_dist(data, &ray);
 		perform_dda(data, &ray);
 		calculate_distance_and_height(data, &ray, x);
-		for (int k = 0; k < WIN_HEIGHT; k++)
-		{
-			for (int l = 0; l < WIN_WIDTH; l++)
-			{
-				put_pixel_img(data->img, l, k, data->mapinfo.buffer[k][l]);
-			}
-		}
-		//draw_vertical_line(&data->img, x, &ray);
 		x++;
 	}
-}
-
-void put_pixel(t_img *img, int x, int y, int color)
-{
-	int index;
-
-	if (x < 0 || y < 0 || x >= WIN_WIDTH || y >= WIN_HEIGHT)
-		return;
-	index = (y * img->line_len) + (x * (img->bpp / 8));
-	*(int *)(img->addr + index) = color;
+	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
+						 data->img.img_ptr, 0, 0);
+	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
+	return (0);
 }
 
 void	init_ray(t_data *data, int x, t_ray *ray)
@@ -166,56 +134,42 @@ void	calculate_distance_and_height(t_data *data, t_ray *ray, int x)
 		ray->draw_start = 0;
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_end >= WIN_HEIGHT)
-		ray->draw_end = WIN_HEIGHT - 1;
+		ray->draw_end = WIN_HEIGHT;
+
 	if (ray->side == 0)
 		wallX = data->player.player_y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
 		wallX = data->player.player_x + ray->perp_wall_dist * ray->ray_dir_x;
-
 	wallX -= floor((wallX));
+
 	texX = (int)(wallX * (double)(TEXTURE_SIZE));
 	if(ray->side == 0 && ray->ray_dir_x > 0)
 		texX = TEXTURE_SIZE - texX - 1;
 	if(ray->side == 1 && ray->ray_dir_y < 0)
 		texX = TEXTURE_SIZE - texX - 1;
+
 	step = 1.0 * TEXTURE_SIZE / ray->line_height;
 	texPos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) * step;
-	int	y = ray->draw_start;
-	int	texY;
+
+	int				i = 0;
+	int				y = ray->draw_start;
+	int				texY;
 	unsigned int	color;
+
+	while (i < y)
+		put_pixel_img(data->img, x, i++, data->mapinfo.texture[5].color); //ARRANJAR MANEIRA PARA DESCOBRIR SE O TETO E O [4] OU O [5]
 	while (y < ray->draw_end)
 	{
 		texY = (int)texPos & (TEXTURE_SIZE - 1);
 		texPos += step;
-		color = (unsigned int)data->mapinfo.texture[0].buffer[TEXTURE_SIZE * texY + texX];
-		data->mapinfo.buffer[y][x] = color;
-		y ++;
-	}
-}
-
-void	draw_vertical_line(t_img *img, int x, t_ray *ray)
-{
-	int	y;
-	int	color;
-
-	if (ray->side == 0)
-	{
-		if (ray->ray_dir_x > 0)
-			color = 0xFF0000;
-		else
-			color = 0xFFFF00;
-	}
-	else
-	{
-		if (ray->ray_dir_y > 0)
-			color = 0x00FF00;
-		else
-			color = 0x0000FF;
-	}
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		put_pixel(img, x, y, color);
+	    color = *(unsigned int *)(data->mapinfo.texture[0].img.addr
+									+ texY * data->mapinfo.texture[0].img.line_len
+									+ texX * (data->mapinfo.texture[0].img.bpp / 8));
+		// NESTE MOMENTO IMAGEM ESTA INVERTIDA (HORIZONTAL)... NEED TO FIX
+		put_pixel_img(data->img, x, y, color);
 		y++;
 	}
+	i = y;
+	while (i < WIN_HEIGHT)
+		put_pixel_img(data->img, x, i++, data->mapinfo.texture[4].color); //ARRANJAR MANEIRA PARA DESCOBRIR SE O CHAO E O [4] OU O [5]
 }

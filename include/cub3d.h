@@ -114,11 +114,12 @@ typedef struct s_flags
 
 typedef struct s_texture
 {
-	char	orientation;
-	char	*path;
-	int		color[3];
-	t_img	img;
-	unsigned int 		buffer[TEXTURE_SIZE * TEXTURE_SIZE];
+	char			orientation;
+	char			*path;
+	int				rgb[3];
+	unsigned int	color;
+	t_img			img;
+	// unsigned int 		buffer[TEXTURE_SIZE * TEXTURE_SIZE];
 }	t_texture;
 
 typedef struct s_mapinfo
@@ -127,7 +128,7 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
-	int		buffer[WIN_HEIGHT][WIN_WIDTH];
+	// int		buffer[WIN_HEIGHT][WIN_WIDTH];
 	t_point	start_pos;
 	char	orientation;
 	t_texture	texture[6];
@@ -181,7 +182,7 @@ int		is_xpm_extension(char *arg);
 
 /*	GAME -------------------------------------------------------------------- */
 void	keypresses(t_data *data);
-void 	raycast(t_data *data);
+int		raycast(t_data *data);
 
 /*	EXIT -------------------------------------------------------------------- */
 void	clean_and_exit(t_data *data, int code);

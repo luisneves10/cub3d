@@ -115,8 +115,8 @@ int	is_connected_map(char *str, int i)
 	j = 0;
 	tmp = replace_newline(&str[i]);
 	map = ft_split(tmp, '\x05');
-	print_map(map); //remove
-	printf("\n"); //remove
+	// print_map(map); //remove
+	// printf("\n"); //remove
 	while (map[j])
 		j ++;
 	flood_fill2(map, 0, 0, j);
@@ -133,7 +133,7 @@ int	is_connected_map(char *str, int i)
 		}
 		j ++;
 	}
-	print_map(map); //remove
+	// print_map(map); //remove
 	return (VALID);
 }
 
@@ -161,7 +161,7 @@ int	check_file(char *str)
 		{
 			if (is_connected_map(str, i) == INVALID)
 				return (error_msg("Map is not connected", INVALID));//remove
-			return (printf("Map is connected\n"), VALID);
+			return (/*ft_putendl_fd("Map is connected", 1), */VALID);
 		}
 		else if (str[i] && str[i] == '1' && !all_textures(&flags))
 			return (error_msg("Missing or duplicated textures/colors", INVALID));

@@ -1,18 +1,14 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+
+
+NO textures/wolfenstein/grey_stone.xpm
+SO textures/wolfenstein/grey_stone.xpm
+WE textures/wolfenstein/grey_stone.xpm
+EA textures/wolfenstein/grey_stone.xpm
 F 220,100,0
 C 225,30,0
 
 
 1111111
 1000001
-1N0000100
+1N00001
 1111111
-
-
-
-111
-101
-111

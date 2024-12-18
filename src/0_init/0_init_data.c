@@ -69,9 +69,9 @@ void	init_player(t_data *data)
 	player.player_y = data->mapinfo.start_pos.y + (0.49);//VERIFICAR O CENTRO DO QUADRADO
 	data->player = player;
 	set_player_orientation(data);
-	printf("ORIENTATION: %c\n", data->mapinfo.orientation);
-	printf("Player position: %d, %d\n", (int)data->player.player_x, (int)data->player.player_y);
-	printf("Player direction: %f, %f\n", data->player.player_dir_x, data->player.player_dir_y);
+	// printf("ORIENTATION: %c\n", data->mapinfo.orientation);
+	// printf("Player position: %d, %d\n", (int)data->player.player_x, (int)data->player.player_y);
+	// printf("Player direction: %f, %f\n", data->player.player_dir_x, data->player.player_dir_y);
 }
 
 void	init_data(t_data *data)
