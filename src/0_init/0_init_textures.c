@@ -24,8 +24,6 @@ void	init_textures(t_data *data)
 			data->mapinfo.texture[i].path, &data->mapinfo.texture[i].img.w, &data->mapinfo.texture[i].img.h);
 		data->mapinfo.texture[i].img.addr = mlx_get_data_addr(data->mapinfo.texture[i].img.img_ptr, &(data->mapinfo.texture[i].img.bpp),
 			&(data->mapinfo.texture[i].img.line_len), &(data->mapinfo.texture[i].img.endian));
-		// printf(PURPLE"size: %d x %d\n"RESET, img.w, img.h); // DELETE DELETE DELETE DELETE DELETE
-		// printf(BLUE"%d\n"RESET, *(int *)(img.addr + 1)); // DELETE DELETE DELETE DELETE DELETE
 		i++;
 	}
 }

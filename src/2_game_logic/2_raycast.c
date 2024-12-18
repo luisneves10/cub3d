@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 13:21:28 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:03:00 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,25 @@ void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray, int x);
 void	draw_vertical_line(t_img *img, int x, t_ray *ray);
+
+void	get_texture_pixels(t_texture texture)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < TEXTURE_SIZE)
+	{
+		x = 0;
+		while (x < TEXTURE_SIZE)
+		{
+			//texture.buffer[TEXTURE_SIZE * y + x] = texture.img.addr + (y * texture.img.line_len + x * (texture.img.bpp / 8));
+			texture.buffer[TEXTURE_SIZE * y + x] = *(unsigned int *)((texture.img.addr + (y * texture.img.line_len) + (x * texture.img.bpp / 8)));
+			x ++;
+		}
+		y ++;
+	}
+}
 
 void	put_pixel_img(t_img img, int x, int y, int color)
 {

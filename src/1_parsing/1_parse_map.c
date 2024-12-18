@@ -3,47 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:40:09 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 10:27:25 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:57:06 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int flood_fill(char **map, int map_height, int x, int y)
+int	check_cell(char **temp_map, int height, int x, int y)
 {
-	if (y >= map_height || y < 0
-		|| x < 0 || x >= ft_strlen(map[y]))
-		return (INVALID);
-	if (map[y][x] == 'F' || map[y][x] == '1')
-		return (VALID);
-	if (map[y][x] != '0' && map[y][x] != 'N' && map[y][x] != 'S' &&
-		map[y][x] != 'E' && map[y][x] != 'W')
-		return (INVALID);
-	map[y][x] = 'F';
-	if (flood_fill(map, map_height, x + 1, y) == INVALID
-		|| flood_fill(map, map_height, x - 1, y) == INVALID
-		|| flood_fill(map, map_height, x, y + 1) == INVALID
-		|| flood_fill(map, map_height, x, y - 1) == INVALID)
-		return (INVALID);
+	if (temp_map[y][x] == '0' || temp_map[y][x] == 'N'
+		|| temp_map[y][x] == 'S' || temp_map[y][x] == 'E'
+		|| temp_map[y][x] == 'W')
+	{
+		if (flood_fill(temp_map, height, x, y) == INVALID)
+			return (error_msg("Not closed map", INVALID));
+	}
 	return (VALID);
 }
 
-int validate_walls(char **map, int height)
+int	validate_walls(char **map, int height)
 {
-	int i;
-	int y;
-	int x;
-	char **temp_map;
+	int		y;
+	int		x;
+	char	**temp_map;
 
-	i = 0;
+	y = 0;
 	temp_map = ft_calloc(height + 1, sizeof(char *));
-	while (i < height)
+	while (y < height)
 	{
-		temp_map[i] = ft_strdup(map[i]);
-		i++;
+		temp_map[y] = ft_strdup(map[y]);
+		y++;
 	}
 	y = 0;
 	while (y < height)
@@ -51,25 +43,34 @@ int validate_walls(char **map, int height)
 		x = 0;
 		while (x < ft_strlen(temp_map[y]))
 		{
-			if (temp_map[y][x] == '0' || temp_map[y][x] == 'N' ||
-				temp_map[y][x] == 'S' || temp_map[y][x] == 'E' || temp_map[y][x] == 'W')
-			{
-				if (flood_fill(temp_map, height, x, y) == INVALID)
-					return (free_map(temp_map, height), error_msg("Not closed map", INVALID));
-			}
+			if (check_cell(temp_map, height, x, y) == INVALID)
+				return (free_map(temp_map, height), INVALID);
 			x ++;
 		}
 		y ++;
 	}
-	free_map(temp_map, height);
-	return (VALID);
+	return (free_map(temp_map, height), VALID);
 }
 
-int valid_map_chars(t_data *data)
+void	check_player_position(t_data *data, int x, int y, int *player_count)
 {
-	int height;
-	int width;
-	int player_count;
+	if (data->mapinfo.map[y][x] == 'N'
+		|| data->mapinfo.map[y][x] == 'S'
+		|| data->mapinfo.map[y][x] == 'E'
+		|| data->mapinfo.map[y][x] == 'W')
+	{
+		data->mapinfo.start_pos.x = x;
+		data->mapinfo.start_pos.y = y;
+		data->mapinfo.direction = data->mapinfo.map[y][x];
+		(*player_count)++;
+	}
+}
+
+int	valid_map_chars(t_data *data)
+{
+	int	height;
+	int	width;
+	int	player_count;
 
 	player_count = 0;
 	height = 0;
@@ -80,16 +81,7 @@ int valid_map_chars(t_data *data)
 		{
 			if (is_valid_char(data->mapinfo.map[height][width]) == INVALID)
 				return (error_msg("Invalid char in map", INVALID));
-			if (data->mapinfo.map[height][width] == 'N'
-				|| data->mapinfo.map[height][width] == 'S'
-				|| data->mapinfo.map[height][width] == 'E'
-				|| data->mapinfo.map[height][width] == 'W')
-				{
-					data->mapinfo.start_pos.x = width;
-					data->mapinfo.start_pos.y = height;
-					data->mapinfo.orientation = data->mapinfo.map[height][width];
-					player_count ++;
-				}
+			check_player_position(data, width, height, &player_count);
 			width ++;
 		}
 		height ++;
@@ -99,10 +91,10 @@ int valid_map_chars(t_data *data)
 	return (VALID);
 }
 
-int    copy_map(t_data *data)
+int	copy_map(t_data *data)
 {
-	int i;
-	int height;
+	int	i;
+	int	height;
 
 	i = 6;
 	height = 0;

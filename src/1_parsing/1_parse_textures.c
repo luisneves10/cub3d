@@ -3,13 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:58:05 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 12:58:13 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:01:52 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
