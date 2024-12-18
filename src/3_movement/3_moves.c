@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:30:43 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:46 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:12:25 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ void rotate_left(t_data *data)
 
 int handle_keypress(int keycode, t_data *data)
 {
-	if (keycode == KEY_ESC) {
-		mlx_destroy_window(data->win.mlx_ptr, data->win.win_ptr);
-		exit(0);
-	}
+	if (keycode == KEY_ESC)
+		quit_program(data);
 	if (keycode == KEY_W)
 		move_forward(data);
 	if (keycode == KEY_S)

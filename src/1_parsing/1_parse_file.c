@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 10:58:16 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:31:12 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void    print_map(char **map) //remove
 int	parse_textures(t_data *data)
 {
 	int	i;
+	t_img	img;
 
 	i = 0;
 	while (i < 6)
@@ -42,6 +43,9 @@ int	parse_textures(t_data *data)
 			return (error_msg("Invalid texture/color", INVALID));
 		if (get_text_path(data, i) == INVALID)
 			return (INVALID);
+		if (valid_texture(data->mapinfo.texture[i]) == INVALID)
+			return (INVALID);
+		img = data->mapinfo.texture[i].img;
 		i ++;
 	}
 	return (VALID);
