@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:35:15 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 15:25:11 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:59:58 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,14 @@ int	valid_rgb(int *color, int size)
 
 int	is_valid_color(t_texture *texture)
 {
-	int	i;
-	int	j;
-	char	*str;
+	int		i;
+	int		j;
 	char	**rgb;
 
 	i = 0;
-	str = texture->path;
-	if (!ft_strchr(str, ','))
+	if (!ft_strchr(texture->path, ','))
 		return (INVALID);
-	rgb = ft_split(str, ',');
+	rgb = ft_split(texture->path, ',');
 	while (rgb[i])
 	{
 		j = 0;
@@ -57,13 +55,13 @@ int	is_valid_color(t_texture *texture)
 			while (is_whitespace(rgb[i][j]))
 				j ++;
 			if (!ft_isdigit(rgb[i][j++]))
-				return (free(rgb), INVALID);//free_split
+				return (free(rgb), INVALID); //free_split
 		}
 		texture->color[i] = ft_atoi(rgb[i]);
 		i ++;
 	}
 	if (valid_rgb(texture->color, i) == INVALID)
-	 	return (free(rgb), INVALID);//free_split
+		return (free(rgb), INVALID); //free_split
 	return (VALID);
 }
 
@@ -96,7 +94,7 @@ int	get_text_path(t_data *data, int k)
 	return (VALID);
 }
 
-int	is_texture(char *str)
+int	is_text(char *str)
 {
 	while (is_whitespace(*str))
 		str++;

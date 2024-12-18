@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 16:55:16 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:57:23 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
-typedef struct s_flags
+typedef struct s_text_orientations
 {
 	int	f;
 	int	c;
@@ -110,7 +110,7 @@ typedef struct s_flags
 	int	s;
 	int	e;
 	int	w;
-} t_flags;
+} t_text_orientations;
 
 typedef struct s_texture
 {
@@ -129,7 +129,7 @@ typedef struct s_mapinfo
 	char	**map;
 	int		buffer[WIN_HEIGHT][WIN_WIDTH];
 	t_point	start_pos;
-	char	orientation;
+	char	direction;
 	t_texture	texture[6];
 }	t_mapinfo;
 
@@ -156,10 +156,11 @@ void	init_data(t_data *data);
 void	init_player(t_data *data);
 void	init_mlx(t_data *data);
 void	init_textures(t_data *data);
+void	init_counters(t_text_orientations *text_counters);
 
 /*	PARSE ------------------------------------------------------------------- */
 int		parse_file(t_data *data, char **argv);
-int		is_texture(char *str);
+int		is_text(char *str);
 int		get_text_path(t_data *data, int k);
 int 	map_height(t_data *data);
 int		copy_map(t_data *data);
@@ -169,6 +170,10 @@ int 	validate_walls(char **map, int height);
 int 	is_valid_char(char c);
 int		check_file(char *str);
 int		valid_texture(t_texture texture);
+int		flood_fill(char **map, int map_height, int x, int y);
+int		get_new_length(char *str);
+int		all_textures(t_text_orientations *text_counters);
+int		count_text(char c, t_text_orientations *text_counters);
 
 /*	VALID ARG --------------------------------------------------------------- */
 int		is_dir(char *arg);

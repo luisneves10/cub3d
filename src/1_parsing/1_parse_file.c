@@ -3,49 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 15:31:12 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:13:08 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    print_map(char **map) //remove
-{
-	int i = 0;
-	int j = 0;
-
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			printf("%c", map[i][j]);
-			j ++;
-		}
-		printf("\n");
-		i ++;
-	}
-}
-
 int	parse_textures(t_data *data)
 {
 	int	i;
-	t_img	img;
 
 	i = 0;
 	while (i < 6)
 	{
-		data->mapinfo.texture[i].orientation = is_texture(data->mapinfo.file[i]);
+		data->mapinfo.texture[i].orientation = is_text(data->mapinfo.file[i]);
 		if (data->mapinfo.texture[i].orientation == INVALID)
 			return (error_msg("Invalid texture/color", INVALID));
 		if (get_text_path(data, i) == INVALID)
 			return (INVALID);
 		if (valid_texture(data->mapinfo.texture[i]) == INVALID)
 			return (INVALID);
-		img = data->mapinfo.texture[i].img;
 		i ++;
 	}
 	return (VALID);
@@ -63,7 +43,6 @@ int	parse_map(t_data *data)
 		return (INVALID);
 	if (validate_walls(data->mapinfo.map, data->mapinfo.nb_lines) == INVALID)
 		return (INVALID);
-	//print_map(data);
 	return (VALID);
 }
 
@@ -81,22 +60,16 @@ int	copy_file(t_data *data)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			break;
+			break ;
 		tmp = ft_strjoin(tmp, str);
 		free(str);
 	}
 	if (tmp[0] == '\0')
-	{
-		free(tmp);
-		close(fd);
-		return (error_msg("Empty file", INVALID));
-	}
+		return (free(tmp), close(fd), error_msg("Empty file", INVALID));
 	if (check_file(tmp) == INVALID)
 		return (free(tmp), close(fd), INVALID);
 	data->mapinfo.file = ft_split(tmp, '\n');
-	free (tmp);
-	close(fd);
-	return (SUCCESS);
+	return (free (tmp), close(fd), SUCCESS);
 }
 
 int	parse_file(t_data *data, char **argv)

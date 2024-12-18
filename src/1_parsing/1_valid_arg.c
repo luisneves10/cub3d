@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:56:02 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:23:24 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/18 13:01:15 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	is_dir(char *arg)
 int	valid_file(char *arg)
 {
 	int	fd;
+
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 	{
 		close(fd);
 		return (error_msg("File: Either the file doesn't exist or you don't"
-					" have permission to open it", 0));
+				" have permission to open it", 0));
 	}
 	return (1);
 }
