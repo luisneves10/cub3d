@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   1_connected_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:10:14 by daduarte          #+#    #+#             */
 /*   Updated: 2024/12/18 12:41:26 by daduarte         ###   ########.fr       */

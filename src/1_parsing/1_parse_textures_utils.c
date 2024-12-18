@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:35:15 by daduarte          #+#    #+#             */
 /*   Updated: 2024/12/18 12:59:58 by daduarte         ###   ########.fr       */
@@ -37,6 +37,13 @@ int	valid_rgb(int *color, int size)
 	return (VALID);
 }
 
+unsigned int combine_rgb(int *rgb)
+{
+	if (!rgb)
+		return (INVALID);
+	return ((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF);
+}
+
 int	is_valid_color(t_texture *texture)
 {
 	int		i;
@@ -57,11 +64,12 @@ int	is_valid_color(t_texture *texture)
 			if (!ft_isdigit(rgb[i][j++]))
 				return (free(rgb), INVALID); //free_split
 		}
-		texture->color[i] = ft_atoi(rgb[i]);
+		texture->rgb[i] = ft_atoi(rgb[i]);
 		i ++;
 	}
-	if (valid_rgb(texture->color, i) == INVALID)
-		return (free(rgb), INVALID); //free_split
+	if (valid_rgb(texture->rgb, i) == INVALID)
+	 	return (free(rgb), INVALID);//free_split
+	texture->color = combine_rgb(texture->rgb);
 	return (VALID);
 }
 

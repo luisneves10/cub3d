@@ -12,13 +12,6 @@
 
 #include "cub3d.h"
 
-int game_loop(t_data *data)
-{
-	raycast(data);
-	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr, data->img.img_ptr, 0, 0);
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_data data;
@@ -29,9 +22,10 @@ int	main(int argc, char **argv)
 	if (parse_file(&data, argv) == INVALID)
 		return (INVALID);
 	init_player(&data);
-	ft_putendl_fd(BOLD ULINE GREEN"VALID FILE"RESET, 1); // REMOVE
+	ft_putstr_fd(BOLD GREEN"Valid file! "RESET, 1);
+	ft_putendl_fd(GREEN"Starting cub3d..."RESET, 1);
 	init_mlx(&data);
-	mlx_loop_hook(data.win.mlx_ptr, game_loop, &data);
+	mlx_loop_hook(data.win.mlx_ptr, raycast, &data);
 	keypresses(&data);
 	mlx_loop(data.win.mlx_ptr);
 }

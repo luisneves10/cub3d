@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   1_valid_images.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:23:16 by daduarte          #+#    #+#             */
 /*   Updated: 2024/12/18 12:12:07 by daduarte         ###   ########.fr       */

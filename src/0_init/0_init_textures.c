@@ -10,21 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "colors.h"
 #include "cub3d.h"
 
 void	init_textures(t_data *data)
 {
 	int		i;
-	t_img	img;
 
 	i = 0;
 	while (i < 4)
 	{
-		img = data->mapinfo.texture[i].img;
-		img.img_ptr = mlx_xpm_file_to_image(data->win.mlx_ptr,
-			data->mapinfo.texture[i].path, &img.w, &img.h);
-		img.addr = mlx_get_data_addr(img.img_ptr, &(img.bpp),
-			&(img.line_len), &(img.endian));
-		i ++;
+		data->mapinfo.texture[i].img.img_ptr = mlx_xpm_file_to_image(data->win.mlx_ptr,
+			data->mapinfo.texture[i].path, &data->mapinfo.texture[i].img.w, &data->mapinfo.texture[i].img.h);
+		data->mapinfo.texture[i].img.addr = mlx_get_data_addr(data->mapinfo.texture[i].img.img_ptr, &(data->mapinfo.texture[i].img.bpp),
+			&(data->mapinfo.texture[i].img.line_len), &(data->mapinfo.texture[i].img.endian));
+		i++;
 	}
 }

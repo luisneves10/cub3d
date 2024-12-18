@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
 /*   Updated: 2024/12/18 12:00:41 by daduarte         ###   ########.fr       */
