@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:35:15 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/12 12:06:35 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:25:11 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,17 @@ int	valid_rgb(int *color, int size)
 	return (VALID);
 }
 
+unsigned int combine_rgb(int *rgb)
+{
+	if (!rgb)
+		return (INVALID);
+	return ((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF);
+}
+
 int	is_valid_color(t_texture *texture)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 	char	**rgb;
 
@@ -54,14 +61,17 @@ int	is_valid_color(t_texture *texture)
 		j = 0;
 		while (rgb[i][j])
 		{
+			while (is_whitespace(rgb[i][j]))
+				j ++;
 			if (!ft_isdigit(rgb[i][j++]))
 				return (free(rgb), INVALID);//free_split
 		}
-		texture->color[i] = ft_atoi(rgb[i]);
+		texture->rgb[i] = ft_atoi(rgb[i]);
 		i ++;
 	}
-	if (valid_rgb(texture->color, i) == INVALID)
+	if (valid_rgb(texture->rgb, i) == INVALID)
 	 	return (free(rgb), INVALID);//free_split
+	texture->color = combine_rgb(texture->rgb);
 	return (VALID);
 }
 
@@ -78,6 +88,8 @@ int	get_text_path(t_data *data, int k)
 		i ++;
 	while (is_whitespace(str[i]))
 		i ++;
+	if (!(*(str + i)))
+		return (error_msg("Missing texture path", INVALID));
 	data->mapinfo.texture[k].path = ft_strdup(str + i);
 	if (data->mapinfo.texture[k].orientation == 'F')
 	{
@@ -94,17 +106,19 @@ int	get_text_path(t_data *data, int k)
 
 int	is_texture(char *str)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0)
+	while (is_whitespace(*str))
+		str++;
+	if (ft_strncmp(str, "NO", 2) == 0 && is_whitespace(*(str + 2)))
 		return ('N');
-	else if (ft_strncmp(str, "SO ", 3) == 0)
+	else if (ft_strncmp(str, "SO", 2) == 0 && is_whitespace(*(str + 2)))
 		return ('S');
-	else if (ft_strncmp(str, "WE ", 3) == 0)
+	else if (ft_strncmp(str, "WE", 2) == 0 && is_whitespace(*(str + 2)))
 		return ('W');
-	else if (ft_strncmp(str, "EA ", 3) == 0)
+	else if (ft_strncmp(str, "EA", 2) == 0 && is_whitespace(*(str + 2)))
 		return ('E');
-	else if (ft_strncmp(str, "F ", 2) == 0)
+	else if (ft_strncmp(str, "F", 1) == 0 && is_whitespace(*(str + 1)))
 		return ('F');
-	else if (ft_strncmp(str, "C ", 2) == 0)
+	else if (ft_strncmp(str, "C", 1) == 0 && is_whitespace(*(str + 1)))
 		return ('C');
 	else
 		return (INVALID);
