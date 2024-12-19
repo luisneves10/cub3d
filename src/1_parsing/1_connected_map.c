@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_connected_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:10:14 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 18:24:26 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:29:15 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,12 @@ int	is_connected_map(char *str, int i)
 	j = 0;
 	while (map[j])
 	{
-		k = 0;
-		while (map[j][k])
+		k = -1;
+		while (map[j][++k])
 		{
 			if (map[j][k] == '1' || map[j][k] == '0' || map[j][k] == 'N'
 				|| map[j][k] == 'S' || map[j][k] == 'E' || map[j][k] == 'W')
 				return (free_split(map), INVALID);
-			k ++;
 		}
 		j ++;
 	}
@@ -115,7 +114,7 @@ int	check_file(char *str)
 	i = 0;
 	while (1)
 	{
-		while (is_whitespace(str[i]))
+		while (ft_iswhitespace(str[i]))
 			i ++;
 		if (str[i] && count_text(str[i], &text_counter))
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:47:22 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:13 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:29:19 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	free_map(char **map, int height)
 int	is_valid_char(char c)
 {
 	if (c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'E' && c != 'W'
-		&& !is_whitespace(c))
+		&& !ft_iswhitespace(c))
 		return (INVALID);
 	return (VALID);
 }

@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:08:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 13:15:02 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:21:55 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	free_paths(t_data *data)
 	i = 0;
 	while (i < 6)
 	{
-		if (data->mapinfo.texture[i].orientation == 'C' || data->mapinfo.texture[i].orientation == 'F')
+		if (data->mapinfo.texture[i].orientation == 'C'
+			|| data->mapinfo.texture[i].orientation == 'F')
 		{
 			if (data->mapinfo.texture[i].path)
 				free(data->mapinfo.texture[i].path);
@@ -44,7 +45,8 @@ void	free_paths(t_data *data)
 		else
 		{
 			if (data->mapinfo.texture[i].img.img_ptr)
-				mlx_destroy_image(data->win.mlx_ptr, data->mapinfo.texture[i].img.img_ptr);
+				mlx_destroy_image(data->win.mlx_ptr,
+					data->mapinfo.texture[i].img.img_ptr);
 			if (data->mapinfo.texture[i].path)
 				free(data->mapinfo.texture[i].path);
 			data->mapinfo.texture[i].path = NULL;

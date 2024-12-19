@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_keypresses_rotate.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:54:46 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 13:55:04 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:15:22 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	rotate_right(t_data *data)
 	double	old_plane_x;
 
 	rot_speed = 0.1;
-	old_dir_x = data->player.player_dir_x;
-	data->player.player_dir_x = data->player.player_dir_x * cos(rot_speed)
-		- data->player.player_dir_y * sin(rot_speed);
-	data->player.player_dir_y = old_dir_x * sin(rot_speed)
-		+ data->player.player_dir_y * cos(rot_speed);
+	old_dir_x = data->player.dir_x;
+	data->player.dir_x = data->player.dir_x * cos(rot_speed)
+		- data->player.dir_y * sin(rot_speed);
+	data->player.dir_y = old_dir_x * sin(rot_speed)
+		+ data->player.dir_y * cos(rot_speed);
 	old_plane_x = data->player.plane_x;
 	data->player.plane_x = data->player.plane_x * cos(rot_speed)
 		- data->player.plane_y * sin(rot_speed);
@@ -38,11 +38,11 @@ void	rotate_left(t_data *data)
 	double	old_plane_x;
 
 	rot_speed = -0.1;
-	old_dir_x = data->player.player_dir_x;
-	data->player.player_dir_x = data->player.player_dir_x * cos(rot_speed)
-		- data->player.player_dir_y * sin(rot_speed);
-	data->player.player_dir_y = old_dir_x * sin(rot_speed)
-		+ data->player.player_dir_y * cos(rot_speed);
+	old_dir_x = data->player.dir_x;
+	data->player.dir_x = data->player.dir_x * cos(rot_speed)
+		- data->player.dir_y * sin(rot_speed);
+	data->player.dir_y = old_dir_x * sin(rot_speed)
+		+ data->player.dir_y * cos(rot_speed);
 	old_plane_x = data->player.plane_x;
 	data->player.plane_x = data->player.plane_x * cos(rot_speed)
 		- data->player.plane_y * sin(rot_speed);

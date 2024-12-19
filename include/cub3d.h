@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 13:20:59 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:30:03 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 # define MOVE_SPEED 0.25
 
 typedef struct s_player {
-	double player_x;
-	double player_y;
-	double player_dir_x;
-	double player_dir_y;
+	double x;
+	double y;
+	double dir_x;
+	double dir_y;
 	double plane_x;
 	double plane_y;
 }	t_player;
@@ -82,8 +82,8 @@ typedef struct s_ray
 	double	dir_y;
 	int		map_x;
 	int		map_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
+	double	delta_x;
+	double	delta_y;
 	double	hit;
 	int		step_x;
 	int		step_y;
@@ -127,7 +127,7 @@ typedef struct s_mapinfo
 	char	*path;
 	char	**file;
 	char	**map;
-	t_point	start_pos;
+	t_point	start;
 	char	direction;
 	t_texture	texture[6];
 	double	tex_wall_x;
@@ -152,7 +152,6 @@ typedef struct s_data
 void    print_map(char **map);
 
 int		error_msg(char *msg, int code);
-int		is_whitespace(char c);
 void 	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
@@ -160,6 +159,7 @@ void	init_data(t_data *data);
 void	init_player(t_data *data);
 void	init_mlx(t_data *data);
 void	init_textures_imgs(t_data *data);
+void	init_textures(t_data *data);
 void	init_counters(t_text_orientations *text_counters);
 
 /*	PARSE ------------------------------------------------------------------- */

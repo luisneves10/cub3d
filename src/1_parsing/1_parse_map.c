@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:40:09 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:06 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:14:01 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	check_player_position(t_data *data, int x, int y, int *player_count)
 		|| data->mapinfo.map[y][x] == 'E'
 		|| data->mapinfo.map[y][x] == 'W')
 	{
-		data->mapinfo.start_pos.x = x;
-		data->mapinfo.start_pos.y = y;
+		data->mapinfo.start.x = x;
+		data->mapinfo.start.y = y;
 		data->mapinfo.direction = data->mapinfo.map[y][x];
 		(*player_count)++;
 	}

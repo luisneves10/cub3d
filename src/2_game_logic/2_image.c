@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_image.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 12:51:07 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:14:26 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 void	get_pixels_position(t_data *data, t_ray *ray)
 {
 	if (ray->side == 0)
-		data->mapinfo.tex_wall_x = data->player.player_y
+		data->mapinfo.tex_wall_x = data->player.y
 			+ ray->perp_wall_dist * ray->dir_y;
 	else
-		data->mapinfo.tex_wall_x = data->player.player_x
+		data->mapinfo.tex_wall_x = data->player.x
 			+ ray->perp_wall_dist * ray->dir_x;
 	data->mapinfo.tex_wall_x -= floor((data->mapinfo.tex_wall_x));
 	data->mapinfo.tex_x = (int)(data->mapinfo.tex_wall_x

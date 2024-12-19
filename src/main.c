@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 12:33:16 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:16:16 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc != 2)
 		return (error_msg("Usage: ./cub3d <map_file.cub>", 1));
