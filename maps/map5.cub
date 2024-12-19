@@ -1,9 +1,9 @@
 
 
-NO textures/wolfenstein/grey_stone.xpm
-SO textures/wolfenstein/grey_stone.xpm
-WE textures/wolfenstein/grey_stone.xpm
-EA textures/wolfenstein/grey_stone.xpm
+NO textures/test/north.xpm
+SO textures/test/south.xpm
+WE textures/test/west.xpm
+EA textures/test/east.xpm
 F 220,100,0
 C 225,30,0
 
