@@ -3,19 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   4_clean_and_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:08:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 12:33:14 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:15:02 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	free_split(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+void	free_paths(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (data->mapinfo.texture[i].orientation == 'C' || data->mapinfo.texture[i].orientation == 'F')
+		{
+			if (data->mapinfo.texture[i].path)
+				free(data->mapinfo.texture[i].path);
+			data->mapinfo.texture[i].path = NULL;
+			i ++;
+		}
+		else
+		{
+			if (data->mapinfo.texture[i].img.img_ptr)
+				mlx_destroy_image(data->win.mlx_ptr, data->mapinfo.texture[i].img.img_ptr);
+			if (data->mapinfo.texture[i].path)
+				free(data->mapinfo.texture[i].path);
+			data->mapinfo.texture[i].path = NULL;
+			i ++;
+		}
+	}
+}
+
+void	free_all(t_data *data)
+{
+	free_paths(data);//mudar nome
+	free_split(data->mapinfo.file);
+	free_map(data->mapinfo.map, data->mapinfo.nb_lines);
+}
+
 void	clean_and_exit(t_data *data, int code)
 {
 	if (!data)
 		exit (code);
+	free_all(data);
+	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
 	if (data->win.mlx_ptr && data->win.win_ptr)
 		mlx_destroy_window(data->win.mlx_ptr, data->win.win_ptr);
 	if (data->win.mlx_ptr)
@@ -24,7 +74,6 @@ void	clean_and_exit(t_data *data, int code)
 		mlx_loop_end(data->win.mlx_ptr);
 		free(data->win.mlx_ptr);
 	}
-	// free de mais cenas;
 	exit (code);
 }
 

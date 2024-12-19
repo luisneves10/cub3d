@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 12:13:08 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:28:22 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	copy_file(t_data *data)
 	fd = open(data->mapinfo.path, O_RDONLY);
 	tmp = ft_strdup("");
 	if (fd < 0)
-		return (error_msg("Invalid file", INVALID));
+		return (free(tmp), error_msg("Invalid file", INVALID));
 	while (1)
 	{
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		tmp = ft_strjoin(tmp, str);
+		tmp = ft_strjoin_free(tmp, str);
 		free(str);
 	}
 	if (tmp[0] == '\0')
@@ -69,7 +69,7 @@ int	copy_file(t_data *data)
 	if (check_file(tmp) == INVALID)
 		return (free(tmp), close(fd), INVALID);
 	data->mapinfo.file = ft_split(tmp, '\n');
-	return (free (tmp), close(fd), SUCCESS);
+	return (free(tmp), close(fd), SUCCESS);
 }
 
 int	parse_file(t_data *data, char **argv)
@@ -80,8 +80,8 @@ int	parse_file(t_data *data, char **argv)
 	if (copy_file(data) == INVALID)
 		return (INVALID);
 	if (parse_textures(data) == INVALID)
-		return (INVALID);
+		return (free_all(data), INVALID);
 	if (parse_map(data) == INVALID)
-		return (INVALID);
+		return (free_all(data), INVALID);
 	return (VALID);
 }

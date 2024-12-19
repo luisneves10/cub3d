@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 13:56:29 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:20:59 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void 	free_map(char **map, int height);
 void	init_data(t_data *data);
 void	init_player(t_data *data);
 void	init_mlx(t_data *data);
-void	init_textures(t_data *data);
+void	init_textures_imgs(t_data *data);
 void	init_counters(t_text_orientations *text_counters);
 
 /*	PARSE ------------------------------------------------------------------- */
@@ -210,5 +210,9 @@ void	move_right(t_data *data);
 /*	EXIT -------------------------------------------------------------------- */
 void	clean_and_exit(t_data *data, int code);
 int		quit_program(t_data *data);
+void	free_split(char **split);
+void	free_all(t_data *data);
+void	free_paths(t_data *data);
+void	free_map(char **map, int height);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 12:00:41 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:25:12 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->file = NULL;
 	mapinfo->start_pos.x = -1;
 	mapinfo->start_pos.y = -1;
+	mapinfo->map = NULL;
+	mapinfo->direction = '\0';
 }
 
 void set_player_direction(t_data *data)
@@ -71,8 +73,26 @@ void	init_player(t_data *data)
 	set_player_direction(data);
 }
 
+void	init_textures(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		data->mapinfo.texture[i].orientation = '\0';
+		data->mapinfo.texture[i].path = NULL;
+		data->mapinfo.texture[i].rgb[0] = -1;
+		data->mapinfo.texture[i].rgb[1] = -1;
+		data->mapinfo.texture[i].rgb[2] = -1;
+		data->mapinfo.texture[i].img.img_ptr = NULL;
+		i ++;
+	}
+}
+
 void	init_data(t_data *data)
 {
+	init_textures(data);
 	init_win(&data->win);
 	init_mapinfo(&data->mapinfo);
 }
