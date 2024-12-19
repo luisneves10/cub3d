@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:39:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/17 15:31:40 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:19:53 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	init_mlx(t_data *data)
 	data->img.w = WIN_WIDTH;
 	data->img.h = WIN_HEIGHT;
 	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp, &data->img.line_len, &data->img.endian);
-	init_textures(data);
+	init_textures_imgs(data);
 }

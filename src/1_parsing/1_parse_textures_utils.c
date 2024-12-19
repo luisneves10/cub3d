@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 11:35:15 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 18:32:51 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:16:20 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,12 @@ int	get_text_path(t_data *data, int k)
 	if (data->mapinfo.texture[k].orientation == 'F')
 	{
 		if (is_valid_color(&data->mapinfo.texture[k]) == INVALID)
-			return (free_paths(data), error_msg("Invalid floor color", INVALID));
+			return (error_msg("Invalid floor color", INVALID));
 	}
 	if (data->mapinfo.texture[k].orientation == 'C')
 	{
 		if (is_valid_color(&data->mapinfo.texture[k]) == INVALID)
-			return (free_paths(data), error_msg("Invalid ceiling color", INVALID));
+			return (error_msg("Invalid ceiling color", INVALID));
 	}
 	return (VALID);
 }

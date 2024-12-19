@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_parse_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 18:21:58 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:28:22 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	parse_map(t_data *data)
 	if (copy_map(data) == INVALID)
 		return (error_msg("Missing map", INVALID));
 	if (valid_map_chars(data) == INVALID)
-		return (free(data->mapinfo.map), INVALID);
+		return (INVALID);
 	if (validate_walls(data->mapinfo.map, data->mapinfo.nb_lines) == INVALID)
-		return (free(data->mapinfo.map), INVALID);
+		return (INVALID);
 	return (VALID);
 }
 

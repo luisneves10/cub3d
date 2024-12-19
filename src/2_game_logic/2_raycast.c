@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/17 17:03:00 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:41:25 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	raycast(t_data *data)
 	int		x;
 	t_ray	ray;
 
-	data->img.img_ptr = mlx_new_image(data->win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp,
-									&data->img.line_len, &data->img.endian);
+	//data->img.img_ptr = mlx_new_image(data->win.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	//data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp,
+	//								&data->img.line_len, &data->img.endian);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
@@ -49,7 +49,7 @@ int	raycast(t_data *data)
 	}
 	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
 						 data->img.img_ptr, 0, 0);
-	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
+	//mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
 	return (0);
 }
 
