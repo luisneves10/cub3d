@@ -12,69 +12,7 @@
 
 #include "cub3d.h"
 
-void move_forward(t_data *data)
-{
-	if (data->mapinfo.map[(int)(data->player.player_y)][(int)(data->player.player_x + data->player.player_dir_x * MOVE_SPEED)] != '1')
-		data->player.player_x += data->player.player_dir_x * MOVE_SPEED;
-	if (data->mapinfo.map[(int)(data->player.player_y + data->player.player_dir_y * MOVE_SPEED)][(int)(data->player.player_x)] != '1')
-		data->player.player_y += data->player.player_dir_y * MOVE_SPEED;
-}
-
-void move_backward(t_data *data)
-{
-	if (data->mapinfo.map[(int)(data->player.player_y)][(int)(data->player.player_x - data->player.player_dir_x * MOVE_SPEED)] != '1')
-		data->player.player_x -= data->player.player_dir_x * MOVE_SPEED;
-	if (data->mapinfo.map[(int)(data->player.player_y - data->player.player_dir_y * MOVE_SPEED)][(int)(data->player.player_x)] != '1')
-		data->player.player_y -= data->player.player_dir_y * MOVE_SPEED;
-}
-
-void move_left(t_data *data)
-{
-	if (data->mapinfo.map[(int)(data->player.player_y)][(int)(data->player.player_x - data->player.plane_x * MOVE_SPEED)] != '1')
-		data->player.player_x -= data->player.plane_x * MOVE_SPEED;
-	if (data->mapinfo.map[(int)(data->player.player_y - data->player.plane_y * MOVE_SPEED)][(int)(data->player.player_x)] != '1')
-		data->player.player_y -= data->player.plane_y * MOVE_SPEED;
-}
-
-void move_right(t_data *data)
-{
-	if (data->mapinfo.map[(int)(data->player.player_y)][(int)(data->player.player_x + data->player.plane_x * MOVE_SPEED)] != '1')
-		data->player.player_x += data->player.plane_x * MOVE_SPEED;
-	if (data->mapinfo.map[(int)(data->player.player_y + data->player.plane_y * MOVE_SPEED)][(int)(data->player.player_x)] != '1')
-		data->player.player_y += data->player.plane_y * MOVE_SPEED;
-}
-
-void rotate_right(t_data *data)
-{
-	double rot_speed;
-	double old_dir_x;
-	double old_plane_x;
-
-	rot_speed = 0.1;
-	old_dir_x = data->player.player_dir_x;
-	data->player.player_dir_x = data->player.player_dir_x * cos(rot_speed) - data->player.player_dir_y * sin(rot_speed);
-	data->player.player_dir_y = old_dir_x * sin(rot_speed) + data->player.player_dir_y * cos(rot_speed);
-	old_plane_x = data->player.plane_x;
-	data->player.plane_x = data->player.plane_x * cos(rot_speed) - data->player.plane_y * sin(rot_speed);
-	data->player.plane_y = old_plane_x * sin(rot_speed) + data->player.plane_y * cos(rot_speed);
-}
-
-void rotate_left(t_data *data)
-{
-	double rot_speed;
-	double old_dir_x;
-	double old_plane_x;
-
-	rot_speed = -0.1;
-	old_dir_x = data->player.player_dir_x;
-	data->player.player_dir_x = data->player.player_dir_x * cos(rot_speed) - data->player.player_dir_y * sin(rot_speed);
-	data->player.player_dir_y = old_dir_x * sin(rot_speed) + data->player.player_dir_y * cos(rot_speed);
-	old_plane_x = data->player.plane_x;
-	data->player.plane_x = data->player.plane_x * cos(rot_speed) - data->player.plane_y * sin(rot_speed);
-	data->player.plane_y = old_plane_x * sin(rot_speed) + data->player.plane_y * cos(rot_speed);
-}
-
-int handle_keypress(int keycode, t_data *data)
+int	handle_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
 		quit_program(data);

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "colors.h"
 #include "cub3d.h"
 
 void	init_textures_imgs(t_data *data)
