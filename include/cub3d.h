@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:23 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:56:29 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct s_win
 typedef struct s_ray
 {
 	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
 	int		map_x;
 	int		map_y;
 	double	delta_dist_x;
@@ -130,6 +130,11 @@ typedef struct s_mapinfo
 	t_point	start_pos;
 	char	direction;
 	t_texture	texture[6];
+	double	tex_wall_x;
+	double	tex_step;
+	double	tex_pos;
+	int		tex_x;
+	int		tex_y;
 }	t_mapinfo;
 
 typedef struct s_data
@@ -182,10 +187,25 @@ int		is_cub_extension(char *arg);
 /*	VALID TEXTURES ---------------------------------------------------------- */
 int		is_xpm_extension(char *arg);
 
-
-/*	GAME -------------------------------------------------------------------- */
-void	keypresses(t_data *data);
+/*	RENDER ------------------------------------------------------------------ */
 int		raycast(t_data *data);
+void	init_ray(t_data *data, int x, t_ray *ray);
+void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
+void	perform_dda(t_data *data, t_ray *ray);
+void	calculate_distance_and_height(t_data *data, t_ray *ray);
+void	put_pixel_img(t_img img, int x, int y, int color);
+int		get_texture_index(t_data *data, char orientation);
+int		get_texture_orientation(t_data *data, t_ray *ray);
+void	create_frame(t_data *data, t_ray *ray, int x);
+
+/*	MOVEMENTS --------------------------------------------------------------- */
+void	keypresses(t_data *data);
+void	rotate_left(t_data *data);
+void	rotate_right(t_data *data);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
 
 /*	EXIT -------------------------------------------------------------------- */
 void	clean_and_exit(t_data *data, int code);

@@ -98,7 +98,7 @@ int	check_file_return_cases(char *str, int i, t_text_orientations *counters)
 	{
 		if (is_connected_map(str, i) == INVALID)
 			return (error_msg("Map is not connected", INVALID));
-		return (printf("Map is connected\n"), VALID);
+		return (VALID);
 	}
 	else if (str[i] && str[i] == '1' && !all_textures(counters))
 		return (error_msg("Missing/duplicated textures/colors", INVALID));
