@@ -12,62 +12,62 @@
 
 #include "cub3d.h"
 
-void	move_forward(t_data *data)
+void	move_forward(t_data *data, double move_speed)
 {
 	int	x;
 	int	y;
 
-	x = (int)(data->player.x + data->player.dir_x * MOVE_SPEED);
+	x = (int)(data->player.x + data->player.dir_x * move_speed);
 	y = (int)(data->player.y);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.x += data->player.dir_x * MOVE_SPEED;
+		data->player.x += data->player.dir_x * move_speed;
 	x = (int)(data->player.x);
-	y = (int)(data->player.y + data->player.dir_y * MOVE_SPEED);
+	y = (int)(data->player.y + data->player.dir_y * move_speed);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.y += data->player.dir_y * MOVE_SPEED;
+		data->player.y += data->player.dir_y * move_speed;
 }
 
-void	move_backward(t_data *data)
+void	move_backward(t_data *data, double move_speed)
 {
 	int	x;
 	int	y;
 
-	x = (int)(data->player.x - data->player.dir_x * MOVE_SPEED);
+	x = (int)(data->player.x - data->player.dir_x * move_speed);
 	y = (int)(data->player.y);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.x -= data->player.dir_x * MOVE_SPEED;
+		data->player.x -= data->player.dir_x * move_speed;
 	x = (int)(data->player.x);
-	y = (int)(data->player.y - data->player.dir_y * MOVE_SPEED);
+	y = (int)(data->player.y - data->player.dir_y * move_speed);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.y -= data->player.dir_y * MOVE_SPEED;
+		data->player.y -= data->player.dir_y * move_speed;
 }
 
-void	move_left(t_data *data)
+void	move_left(t_data *data, double move_speed)
 {
 	int	x;
 	int	y;
 
-	x = (int)(data->player.x - data->player.plane_x * MOVE_SPEED);
+	x = (int)(data->player.x - data->player.plane_x * move_speed);
 	y = (int)(data->player.y);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.x -= data->player.plane_x * MOVE_SPEED;
+		data->player.x -= data->player.plane_x * move_speed;
 	x = (int)(data->player.x);
-	y = (int)(data->player.y - data->player.plane_y * MOVE_SPEED);
+	y = (int)(data->player.y - data->player.plane_y * move_speed);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.y -= data->player.plane_y * MOVE_SPEED;
+		data->player.y -= data->player.plane_y * move_speed;
 }
 
-void	move_right(t_data *data)
+void	move_right(t_data *data, double move_speed)
 {
 	int	x;
 	int	y;
 
-	x = (int)(data->player.x + data->player.plane_x * MOVE_SPEED);
+	x = (int)(data->player.x + data->player.plane_x * move_speed);
 	y = (int)(data->player.y);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.x += data->player.plane_x * MOVE_SPEED;
+		data->player.x += data->player.plane_x * move_speed;
 	x = (int)(data->player.x);
-	y = (int)(data->player.y + data->player.plane_y * MOVE_SPEED);
+	y = (int)(data->player.y + data->player.plane_y * move_speed);
 	if (data->mapinfo.map[y][x] != '1')
-		data->player.y += data->player.plane_y * MOVE_SPEED;
+		data->player.y += data->player.plane_y * move_speed;
 }

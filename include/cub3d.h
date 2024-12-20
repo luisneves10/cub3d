@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <sys/time.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include "../libft/include/ft_printf.h"
@@ -45,7 +46,9 @@
 # define FAILURE 0
 # define SUCCESS 1
 
-# define MOVE_SPEED 0.25
+# define FOV 0.66
+# define MOVE_SPEED 1.5
+# define ROT_SPEED 1.2
 
 typedef struct s_player {
 	double x;
@@ -143,6 +146,7 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_player	player;
 	t_img		img;
+	int			key[7];
 }	t_data;
 
 /* ========================================================================== */
@@ -199,13 +203,15 @@ int		get_texture_orientation(t_data *data, t_ray *ray);
 void	create_frame(t_data *data, t_ray *ray, int x);
 
 /*	MOVEMENTS --------------------------------------------------------------- */
+double	get_delta_time();
+int		update_player(t_data *data, double delta_time);
 void	keypresses(t_data *data);
-void	rotate_left(t_data *data);
-void	rotate_right(t_data *data);
-void	move_forward(t_data *data);
-void	move_backward(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
+void	rotate_left(t_data *data, double rot_speed);
+void	rotate_right(t_data *data, double rot_speed);
+void	move_forward(t_data *data, double move_speed);
+void	move_backward(t_data *data, double move_speed);
+void	move_left(t_data *data, double move_speed);
+void	move_right(t_data *data, double move_speed);
 
 /*	EXIT -------------------------------------------------------------------- */
 void	clean_and_exit(t_data *data, int code);

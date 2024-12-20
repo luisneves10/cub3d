@@ -27,8 +27,6 @@ int	raycast(t_data *data)
 		create_frame(data, &ray, x);
 		x++;
 	}
-	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
-		data->img.img_ptr, 0, 0);
 	return (0);
 }
 
