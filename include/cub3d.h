@@ -166,8 +166,10 @@ void 	free_map(char **map, int height);
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
 void	init_player(t_data *data);
-void	init_mlx(t_data *data);
-void	init_textures_imgs(t_data *data);
+// void	init_mlx(t_data *data);
+int		init_mlx(t_data *data);
+// void	init_textures_imgs(t_data *data);
+int		init_textures_imgs(t_data *data);
 void	init_textures(t_data *data);
 void	init_counters(t_text_orientations *text_counters);
 

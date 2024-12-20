@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	init_mlx(t_data *data)
+int	init_mlx(t_data *data)
 {
 	data->win.mlx_ptr = mlx_init();
 	data->win.win_ptr = mlx_new_window(data->win.mlx_ptr,
@@ -22,5 +22,7 @@ void	init_mlx(t_data *data)
 	data->img.h = WIN_HEIGHT;
 	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp,
 			&data->img.line_len, &data->img.endian);
-	init_textures_imgs(data);
+	if (init_textures_imgs(data) == INVALID)
+		return (INVALID);
+	return (0);
 }
