@@ -31,9 +31,21 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->direction = '\0';
 }
 
+static void init_keys(int *key)
+{
+	key[0] = 0;
+	key[1] = 0;
+	key[2] = 0;
+	key[3] = 0;
+	key[4] = 0;
+	key[5] = 0;
+	key[6] = 0;
+}
+
 void	init_data(t_data *data)
 {
 	init_textures(data);
 	init_win(&data->win);
 	init_mapinfo(&data->mapinfo);
+	init_keys(data->key);
 }

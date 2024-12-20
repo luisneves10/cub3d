@@ -12,6 +12,18 @@
 
 #include "cub3d.h"
 
+int	game_loop(t_data *data)
+{
+	double	delta_time;
+
+	delta_time = get_delta_time();
+	update_player(data, delta_time);
+	raycast(data);
+	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
+		data->img.img_ptr, 0, 0);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -25,7 +37,7 @@ int	main(int argc, char **argv)
 	ft_putstr_fd(BOLD GREEN"Valid file! "RESET, 1);
 	ft_putendl_fd(GREEN"Starting cub3d..."RESET, 1);
 	init_mlx(&data);
-	mlx_loop_hook(data.win.mlx_ptr, raycast, &data);
+	mlx_loop_hook(data.win.mlx_ptr, game_loop, &data);
 	keypresses(&data);
 	mlx_loop(data.win.mlx_ptr);
 }
