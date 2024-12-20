@@ -47,9 +47,14 @@
 # define SUCCESS 1
 
 # define FOV 0.66
-# define MOVE_SPEED 1.5
-# define ROT_SPEED 1.2
+# define MOVE_SPEED 2.0
+# define ROT_SPEED 2.5
 
+# define MM_WIDTH 150
+# define MM_HEIGHT 150
+# define MM_SCALE 10
+# define FOV_RADIUS 2
+//
 typedef struct s_player {
 	double x;
 	double y;
@@ -201,6 +206,11 @@ void	put_pixel_img(t_img img, int x, int y, int color);
 int		get_texture_index(t_data *data, char orientation);
 int		get_texture_orientation(t_data *data, t_ray *ray);
 void	create_frame(t_data *data, t_ray *ray, int x);
+
+void	draw_minimap_frame(t_data *data);
+void	draw_minimap(t_data *data);
+void	draw_player_on_minimap(t_data *data);
+void	draw_pov_on_minimap(t_data *data);
 
 /*	MOVEMENTS --------------------------------------------------------------- */
 double	get_delta_time();

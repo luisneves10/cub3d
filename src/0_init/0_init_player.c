@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:25:06 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/19 15:25:40 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:51:40 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	set_direction_horizontal(t_data *data)
 		data->player.dir_x = 1;
 		data->player.dir_y = 0;
 		data->player.plane_x = 0;
-		data->player.plane_y = 0.66;
+		data->player.plane_y = FOV;
 	}
 	if (data->mapinfo.direction == 'W')
 	{
 		data->player.dir_x = -1;
 		data->player.dir_y = 0;
 		data->player.plane_x = 0;
-		data->player.plane_y = -0.66;
+		data->player.plane_y = -FOV;
 	}
 }
 
@@ -36,14 +36,14 @@ void	set_direction_vertical(t_data *data)
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = -1;
-		data->player.plane_x = 0.66;
+		data->player.plane_x = FOV;
 		data->player.plane_y = 0;
 	}
 	else if (data->mapinfo.direction == 'S')
 	{
 		data->player.dir_x = 0;
 		data->player.dir_y = 1;
-		data->player.plane_x = -0.66;
+		data->player.plane_x = -FOV;
 		data->player.plane_y = 0;
 	}
 }
