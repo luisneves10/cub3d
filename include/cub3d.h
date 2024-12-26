@@ -54,7 +54,7 @@
 # define MM_HEIGHT 150
 # define MM_SCALE 10
 # define FOV_RADIUS 2
-//
+
 typedef struct s_player {
 	double x;
 	double y;
@@ -79,8 +79,8 @@ typedef struct s_win
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int		w; // WIDTH
-	int		h; // HEIGHT
+	int		w;
+	int		h;
 }	t_win;
 
 typedef struct s_ray
@@ -131,18 +131,18 @@ typedef struct s_texture
 
 typedef struct s_mapinfo
 {
-	int		nb_lines;
-	char	*path;
-	char	**file;
-	char	**map;
-	t_point	start;
-	char	direction;
+	int			nb_lines;
+	char		*path;
+	char		**file;
+	char		**map;
+	t_point		start;
+	char		direction;
 	t_texture	texture[6];
-	double	tex_wall_x;
-	double	tex_step;
-	double	tex_pos;
-	int		tex_x;
-	int		tex_y;
+	double		tex_wall_x;
+	double		tex_step;
+	double		tex_pos;
+	int			tex_x;
+	int			tex_y;
 }	t_mapinfo;
 
 typedef struct s_data
@@ -166,9 +166,7 @@ void 	free_map(char **map, int height);
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
 void	init_player(t_data *data);
-// void	init_mlx(t_data *data);
 int		init_mlx(t_data *data);
-// void	init_textures_imgs(t_data *data);
 int		init_textures_imgs(t_data *data);
 void	init_textures(t_data *data);
 void	init_counters(t_text_orientations *text_counters);
