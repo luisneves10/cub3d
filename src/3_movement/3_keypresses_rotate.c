@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:54:46 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:15:22 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:14:11 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 
 void	rotate_right(t_data *data, double rot_speed)
 {
-	// double	rot_speed;
-	// double	old_dir_x;
-	// double	old_plane_x;
-	//
-	// rot_speed = 0.1;
-	// old_dir_x = data->player.dir_x;
-	// data->player.dir_x = data->player.dir_x * cos(rot_speed)
-	// 	- data->player.dir_y * sin(rot_speed);
-	// data->player.dir_y = old_dir_x * sin(rot_speed)
-	// 	+ data->player.dir_y * cos(rot_speed);
-	// old_plane_x = data->player.plane_x;
-	// data->player.plane_x = data->player.plane_x * cos(rot_speed)
-	// 	- data->player.plane_y * sin(rot_speed);
-	// data->player.plane_y = old_plane_x * sin(rot_speed)
-	// 	+ data->player.plane_y * cos(rot_speed);
 	double old_dir_x;
 	double old_plane_x;
 
@@ -42,21 +27,6 @@ void	rotate_right(t_data *data, double rot_speed)
 
 void	rotate_left(t_data *data, double rot_speed)
 {
-	// double	rot_speed;
-	// double	old_dir_x;
-	// double	old_plane_x;
-	//
-	// rot_speed = -0.1;
-	// old_dir_x = data->player.dir_x;
-	// data->player.dir_x = data->player.dir_x * cos(rot_speed)
-	// 	- data->player.dir_y * sin(rot_speed);
-	// data->player.dir_y = old_dir_x * sin(rot_speed)
-	// 	+ data->player.dir_y * cos(rot_speed);
-	// old_plane_x = data->player.plane_x;
-	// data->player.plane_x = data->player.plane_x * cos(rot_speed)
-	// 	- data->player.plane_y * sin(rot_speed);
-	// data->player.plane_y = old_plane_x * sin(rot_speed)
-	// 	+ data->player.plane_y * cos(rot_speed);
 	double old_dir_x;
 	double old_plane_x;
 

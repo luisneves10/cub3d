@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_moves.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:30:43 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/18 18:41:14 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:40:44 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,37 @@ int	handle_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
+int	handle_mouse_move(int x, int y, t_data *data)
+{
+	static int	old_x = WIN_WIDTH / 2;
+
+	mlx_mouse_hide(data->win.mlx_ptr, data->win.win_ptr);
+	if (x > WIN_WIDTH - 20)
+	{
+		x = 20;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+	if (x < 20)
+	{
+		x = WIN_WIDTH - 20;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+	if (x == old_x)
+		return (0);
+	if (x < old_x)
+		rotate_left(data, 0.02);
+	else if (x > old_x)
+		rotate_right(data, 0.02);
+	old_x = x;
+	return (0);
+}
+
 void	keypresses(t_data *data)
 {
+	mlx_hook(data->win.win_ptr, MotionNotify, PointerMotionMask, handle_mouse_move, data);
 	mlx_hook(data->win.win_ptr, KeyPress, KeyPressMask, handle_keypress, data);
 	mlx_hook(data->win.win_ptr, KeyRelease,
-		  KeyReleaseMask, handle_keyrelease, data);
+		KeyReleaseMask, handle_keyrelease, data);
 	mlx_hook(data->win.win_ptr, DestroyNotify,
 		StructureNotifyMask, quit_program, data);
 }
