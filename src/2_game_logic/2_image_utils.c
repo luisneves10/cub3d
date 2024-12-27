@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_image_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:23:44 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 12:09:42 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:51:20 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+	{
+		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+		*(unsigned int *)dst = color;
+	}
+}
+
+void	put_pixel_img_transp(t_img img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (color == (int)0xFF000000)
+		return ;
 	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
 	{
 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));

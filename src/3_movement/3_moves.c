@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:30:43 by daduarte          #+#    #+#             */
-/*   Updated: 2024/12/27 12:40:44 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:25:59 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,14 @@ int	handle_mouse_move(int x, int y, t_data *data)
 	static int	old_x = WIN_WIDTH / 2;
 
 	mlx_mouse_hide(data->win.mlx_ptr, data->win.win_ptr);
-	if (x > WIN_WIDTH - 20)
+	if (x > WIN_WIDTH - 50)
 	{
-		x = 20;
+		x = 50;
 		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
 	}
-	if (x < 20)
+	if (x < 50)
 	{
-		x = WIN_WIDTH - 20;
+		x = WIN_WIDTH - 50;
 		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
 	}
 	if (x == old_x)

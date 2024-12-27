@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:30:03 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:48:42 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,9 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_player	player;
 	t_img		img;
+	int			offset;
 	int			key[7];
+	t_img		sprite[8];
 }	t_data;
 
 /* ========================================================================== */
@@ -207,9 +209,11 @@ void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray);
 void	put_pixel_img(t_img img, int x, int y, int color);
+void	put_pixel_img_transp(t_img img, int x, int y, int color);
 int		get_texture_index(t_data *data, char orientation);
 int		get_texture_orientation(t_data *data, t_ray *ray);
 void	create_frame(t_data *data, t_ray *ray, int x);
+void	draw_torch(t_data *data, t_img torch); // BONUS
 
 void	draw_minimap_frame(t_data *data);
 void	draw_minimap(t_data *data);

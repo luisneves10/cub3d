@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:14:26 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:48:20 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,29 @@ void	get_pixels_position(t_data *data, t_ray *ray)
 	data->mapinfo.tex_step = 1.0 * TEXTURE_SIZE / ray->line_height;
 	data->mapinfo.tex_pos = (ray->draw_start - WIN_HEIGHT / 2
 			+ ray->line_height / 2) * data->mapinfo.tex_step;
+}
+
+void	draw_torch(t_data *data, t_img torch)
+{
+	t_point	p;
+	int		color;
+	static int	sprite = 0;
+
+	p.y = 0;
+	while (p.y < torch.h)
+	{
+		p.x = 0;
+		while (p.x < torch.w)
+		{
+			// color = get_pixel(&torch, p.x, p.y);
+			color = *(unsigned int *)(torch.addr + (p.y * torch.line_len + p.x * (torch.bpp / 8)));
+			put_pixel_img_transp(data->img, (WIN_WIDTH - torch.w - 200) + p.x, (WIN_HEIGHT - torch.h + data->offset) + p.y, color);
+			p.x++;
+		}
+		p.y++;
+	}
+	sprite++;
+	// return (torch);
 }
 
 void	create_frame(t_data *data, t_ray *ray, int x)

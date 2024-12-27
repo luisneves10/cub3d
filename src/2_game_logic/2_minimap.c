@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_minimap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:22:22 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/26 17:02:21 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:18:20 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void draw_minimap(t_data *data)
 		x = 9;
 		while (++x < MM_WIDTH)
 		{
-			map_x = map_start_x + x / MM_SCALE;
-			map_y = map_start_y + y / MM_SCALE;
+			map_x = map_start_x + x / MM_SCALE - 1;
+			map_y = map_start_y + y / MM_SCALE - 1;
 			if (map_x >= 0 && map_y >= 0 && map_y < data->mapinfo.nb_lines
 				&& map_x < ft_strlen(data->mapinfo.map[map_y]))
 			{
