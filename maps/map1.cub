@@ -1,10 +1,10 @@
 
 
 
-NO ./textures/rac_logo.xpm
-SO ./textures/rac_logo.xpm
-WE ./textures/dinis.xpm
-EA ./textures/dinis.xpm
+NO ./textures/
+SO ./textures/
+WE ./textures/
+EA ./textures/
 F 50,50,50
 C 20,20,20
 

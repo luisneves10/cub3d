@@ -6,7 +6,7 @@
 /*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:22:22 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/20 16:13:52 by luibarbo         ###   ########.fr       */
+/*   Updated: 2024/12/26 17:02:21 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void draw_minimap(t_data *data)
 {
 	int	map_start_x;
 	int	map_start_y;
-	int map_x;
-	int map_y;
+	int	map_x;
+	int	map_y;
 	int	x;
 	int	y;
 
