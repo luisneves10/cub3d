@@ -32,6 +32,8 @@ int	parse_textures(t_data *data)
 				return (INVALID);
 		i ++;
 	}
+	if (unique_textures(data) == INVALID)
+		return (INVALID);
 	return (VALID);
 }
 

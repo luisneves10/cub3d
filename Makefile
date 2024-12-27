@@ -42,6 +42,7 @@ SRC		= src/main.c src/error.c \
 		  src/1_parsing/1_parse_map.c \
 		  src/1_parsing/1_parse_map_utils.c \
 		  src/1_parsing/1_parse_textures.c \
+		  src/1_parsing/1_validate_textures.c \
 		  src/1_parsing/1_valid_arg.c \
 		  src/1_parsing/1_valid_images.c \
 		  src/2_game_logic/2_image.c \

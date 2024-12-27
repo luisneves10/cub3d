@@ -186,6 +186,10 @@ int		valid_texture(t_texture texture);
 int		flood_fill(char **map, int map_height, int x, int y);
 int		get_new_length(char *str);
 int		all_textures(t_text_orientations *text_counters);
+int		all_textures(t_text_orientations *text_counters);
+int		unique_textures(t_data *data);
+int		is_valid_color(t_texture *texture);
+int		valid_rgb(int *color, int size);
 int		count_text(char c, t_text_orientations *text_counters);
 
 /*	VALID ARG --------------------------------------------------------------- */

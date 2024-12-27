@@ -12,58 +12,6 @@
 
 #include "cub3d.h"
 
-int	valid_rgb(int *color, int size)
-{
-	int	i;
-
-	i = 0;
-	if (size != 3)
-		return (INVALID);
-	while (i < 3)
-	{
-		if (color[i] < 0 || color[i] > 255)
-			return (INVALID);
-		i ++;
-	}
-	return (VALID);
-}
-
-unsigned int	combine_rgb(int *rgb)
-{
-	if (!rgb)
-		return (INVALID);
-	return (((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF));
-}
-
-int	is_valid_color(t_texture *texture)
-{
-	int		i;
-	int		j;
-	char	**rgb;
-
-	i = 0;
-	if (!ft_strchr(texture->path, ','))
-		return (INVALID);
-	rgb = ft_split(texture->path, ',');
-	while (rgb[i])
-	{
-		j = 0;
-		while (rgb[i][j])
-		{
-			while (ft_iswhitespace(rgb[i][j]))
-				j ++;
-			if (!ft_isdigit(rgb[i][j++]))
-				return (free_split(rgb), INVALID); //free_split
-		}
-		texture->rgb[i] = ft_atoi(rgb[i]);
-		i ++;
-	}
-	if (valid_rgb(texture->rgb, i) == INVALID)
-		return (free_split(rgb), INVALID);//free_split
-	texture->color = combine_rgb(texture->rgb);
-	return (free_split(rgb), VALID);
-}
-
 int	get_text_path(t_data *data, int k)
 {
 	int		i;
