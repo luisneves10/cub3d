@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:16:16 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:22:03 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int	game_loop(t_data *data)
 	delta_time = get_delta_time();
 	update_player(data, delta_time);
 	raycast(data);
+
+	draw_minimap_frame(data);
+	draw_minimap(data);
+	draw_pov_on_minimap(data);
+	draw_player_on_minimap(data);
+
 	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
 		data->img.img_ptr, 0, 0);
 	return (0);

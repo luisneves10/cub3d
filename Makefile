@@ -29,7 +29,29 @@ LIBFT		= libft/libft.a
 MLX_DIR		= minilibx-linux/
 MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
 
-SRC	= $(shell find $(SRC_DIR) -name '*.c')
+# SRC	= $(shell find $(SRC_DIR) -name '*.c')
+
+SRC		= src/main.c src/error.c \
+		  src/0_init/0_init_data.c \
+		  src/0_init/0_init_mlx.c \
+		  src/0_init/0_init_player.c \
+		  src/0_init/0_init_textures.c \
+		  src/1_parsing/1_connected_map.c \
+		  src/1_parsing/1_connected_map_utils.c \
+		  src/1_parsing/1_parse_file.c \
+		  src/1_parsing/1_parse_map.c \
+		  src/1_parsing/1_parse_map_utils.c \
+		  src/1_parsing/1_parse_textures.c \
+		  src/1_parsing/1_valid_arg.c \
+		  src/1_parsing/1_valid_images.c \
+		  src/2_game_logic/2_image.c \
+		  src/2_game_logic/2_image_utils.c \
+		  src/2_game_logic/2_minimap.c \
+		  src/2_game_logic/2_raycast.c \
+		  src/3_movement/3_keypresses_move.c \
+		  src/3_movement/3_keypresses_rotate.c \
+		  src/3_movement/3_moves.c \
+		  src/4_exit/4_clean_and_exit.c
 
 OBJ			= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:06:42 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:44:02 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	parse_textures(t_data *data)
 			return (INVALID);
 		if (valid_texture(data->mapinfo.texture[i]) == INVALID)
 			return (INVALID);
+		if (data->mapinfo.texture[i].orientation != 'F'
+			&& data->mapinfo.texture[i].orientation != 'C')
+			if (valid_file(data->mapinfo.texture[i].path) == INVALID)
+				return (INVALID);
 		i ++;
 	}
 	return (VALID);

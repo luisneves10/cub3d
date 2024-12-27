@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:56:02 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/18 13:01:15 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:37:57 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	is_dir(char *arg)
 	if (fd >= 0)
 	{
 		close (fd);
-		return (error_msg("File: is a directory", 0));
+		return (error_msg("File: is a directory", INVALID));
 	}
-	return (1);
+	return (VALID);
 }
 
 int	valid_file(char *arg)
@@ -34,9 +34,10 @@ int	valid_file(char *arg)
 	{
 		close(fd);
 		return (error_msg("File: Either the file doesn't exist or you don't"
-				" have permission to open it", 0));
+				" have permission to open it", INVALID));
 	}
-	return (1);
+	close(fd);
+	return (VALID);
 }
 
 int	is_cub_extension(char *arg)
@@ -48,6 +49,6 @@ int	is_cub_extension(char *arg)
 		i++;
 	if (arg[i] == 'b' && arg[i - 1] == 'u' && arg[i - 2] == 'c'
 		&& arg[i - 3] == '.')
-		return (1);
-	return (error_msg("File: only .cub files are valid", 0));
+		return (VALID);
+	return (error_msg("File: only .cub files are valid", INVALID));
 }
