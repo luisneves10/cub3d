@@ -153,7 +153,7 @@ typedef struct s_data
 	t_img		img;
 	int			offset;
 	int			key[7];
-	t_img		sprite[8];
+	t_img		sprite[8]; // CHANGE ACCORDING TO NUMBER OF IMAGES
 }	t_data;
 
 /* ========================================================================== */
@@ -208,12 +208,18 @@ void	init_ray(t_data *data, int x, t_ray *ray);
 void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray);
+void	create_frame(t_data *data, t_ray *ray, int x);
+
+t_img	new_file_img(t_win window, char *file);
 void	put_pixel_img(t_img img, int x, int y, int color);
 void	put_pixel_img_transp(t_img img, int x, int y, int color);
 int		get_texture_index(t_data *data, char orientation);
 int		get_texture_orientation(t_data *data, t_ray *ray);
-void	create_frame(t_data *data, t_ray *ray, int x);
-void	draw_torch(t_data *data, t_img torch); // BONUS
+
+void	load_sprites(t_data *data);
+void	draw_torch(t_data *data, t_img torch);
+int		animate_movement(t_data *data);
+int		animate_sprite();
 
 void	draw_minimap_frame(t_data *data);
 void	draw_minimap(t_data *data);
@@ -221,9 +227,11 @@ void	draw_player_on_minimap(t_data *data);
 void	draw_pov_on_minimap(t_data *data);
 
 /*	MOVEMENTS --------------------------------------------------------------- */
-double	get_delta_time();
 int		update_player(t_data *data, double delta_time);
 void	keypresses(t_data *data);
+int		handle_mouse_move(int x, int y, t_data *data);
+int		handle_keypress(int keycode, t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
 void	rotate_left(t_data *data, double rot_speed);
 void	rotate_right(t_data *data, double rot_speed);
 void	move_forward(t_data *data, double move_speed);
@@ -238,5 +246,8 @@ void	free_split(char **split);
 void	free_all(t_data *data);
 void	free_paths(t_data *data);
 void	free_map(char **map, int height);
+
+/*	UTILS ------------------------------------------------------------------- */
+double	get_delta_time();
 
 #endif

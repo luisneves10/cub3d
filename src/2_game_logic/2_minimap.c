@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:22:22 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 15:18:20 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:57:04 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ void	draw_player_on_minimap(t_data *data)
 	int	px;
 	int	py;
 
-    center_x = MM_WIDTH / 2 + 10;
-    center_y = MM_HEIGHT / 2 + 10;
-	py = -2;
-	while (py <= 2)
+	center_x = MM_WIDTH / 2 + 10;
+	center_y = MM_HEIGHT / 2 + 10;
+	py = -3;
+	while (py <= 3)
 	{
-		px = -2;
-		while (px <= 2)
+		px = -3;
+		while (px <= 3)
 		{
-            put_pixel_img(data->img, center_x + px, center_y + py, 0xFF0000);
+			put_pixel_img(data->img, center_x + px, center_y + py, 0xFF0000);
 			px++;
 		}
 		py++;

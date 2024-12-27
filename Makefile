@@ -49,10 +49,13 @@ SRC		= src/main.c src/error.c \
 		  src/2_game_logic/2_image_utils.c \
 		  src/2_game_logic/2_minimap.c \
 		  src/2_game_logic/2_raycast.c \
+		  src/2_game_logic/2_sprite.c \
 		  src/3_movement/3_keypresses_move.c \
 		  src/3_movement/3_keypresses_rotate.c \
 		  src/3_movement/3_moves.c \
-		  src/4_exit/4_clean_and_exit.c
+		  src/3_movement/3_handle_events.c \
+		  src/4_exit/4_clean_and_exit.c \
+		  src/5_utils/5_utils.c
 
 OBJ			= $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 

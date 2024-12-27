@@ -6,11 +6,21 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:23:44 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 15:51:20 by daduarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:28:36 by luibarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_img	new_file_img(t_win window, char *file)
+{
+	t_img	image;
+
+	image.img_ptr = mlx_xpm_file_to_image(window.mlx_ptr, file, &image.w, &image.h);
+	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
+			&(image.line_len), &(image.endian));
+	return (image);
+}
 
 void	put_pixel_img(t_img img, int x, int y, int color)
 {
