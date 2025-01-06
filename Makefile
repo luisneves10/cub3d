@@ -6,7 +6,7 @@
 #    By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 11:01:48 by luibarbo          #+#    #+#              #
-#    Updated: 2024/12/19 09:54:34 by daduarte         ###   ########.fr        #
+#    Updated: 2025/01/06 15:55:15 by daduarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC		= src/main.c src/error.c \
 		  src/2_game_logic/2_minimap.c \
 		  src/2_game_logic/2_raycast.c \
 		  src/2_game_logic/2_sprite.c \
+		  src/2_game_logic/2_darkness.c \
 		  src/3_movement/3_keypresses_move.c \
 		  src/3_movement/3_keypresses_rotate.c \
 		  src/3_movement/3_moves.c \

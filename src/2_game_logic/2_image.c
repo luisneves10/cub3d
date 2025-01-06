@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 16:30:25 by luibarbo         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:54:08 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 static void	draw_ceiling(t_data *data, t_ray *ray, int x)
 {
-	int	pixel;
-	int	i;
+	int		i;
+	int		color;
+	int		pixel;
+	double	step;
 
 	pixel = 0;
 	i = get_texture_index(data, 'C');
 	if (i < 0)
 		return ;
 	while (pixel < ray->draw_start)
-		put_pixel_img(data->img, x, pixel++, data->mapinfo.texture[i].color);
+	{
+		step = (double)(WIN_HEIGHT / 2 - pixel) / ((WIN_HEIGHT/2) + 100);
+		color = color_gradient(data->mapinfo.texture[i].color, step);
+		put_pixel_img(data->img, x, pixel++, color);
+	}
 }
 
 static void	draw_wall(t_data *data, t_ray *ray, int x)
 {
-	int				pixel;
 	int				i;
+	int				pixel;
+	int				darkness;
 	unsigned int	color;
 
 	pixel = ray->draw_start;
@@ -42,21 +49,29 @@ static void	draw_wall(t_data *data, t_ray *ray, int x)
 		color = *(unsigned int *)(data->mapinfo.texture[i].img.addr
 				+ data->mapinfo.tex_y * data->mapinfo.texture[i].img.line_len
 				+ data->mapinfo.tex_x * (data->mapinfo.texture[i].img.bpp / 8));
+		darkness = calculate_darkness(ray);
+		color = apply_darkness(color, darkness);
 		put_pixel_img(data->img, x, pixel++, color);
 	}
 }
 
 static void	draw_floor(t_data *data, t_ray *ray, int x)
 {
-	int	pixel;
-	int	i;
+	int		pixel;
+	int		i;
+	int		color;
+	double	step;
 
 	pixel = ray->draw_end;
 	i = get_texture_index(data, 'F');
 	if (i < 0)
 		return ;
 	while (pixel < WIN_HEIGHT)
-		put_pixel_img(data->img, x, pixel++, data->mapinfo.texture[i].color);
+	{
+		step = (double)(pixel - (WIN_HEIGHT/2)) / ((WIN_HEIGHT/2) + 100);
+		color = color_gradient(data->mapinfo.texture[i].color, step);
+		put_pixel_img(data->img, x, pixel++, color);
+	}
 }
 
 void	get_pixels_position(t_data *data, t_ray *ray)
