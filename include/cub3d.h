@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 15:48:42 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:54:55 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,10 @@ void	draw_minimap_frame(t_data *data);
 void	draw_minimap(t_data *data);
 void	draw_player_on_minimap(t_data *data);
 void	draw_pov_on_minimap(t_data *data);
+
+int		color_gradient(int color, double step);
+int		calculate_darkness(t_ray *ray);
+int		apply_darkness(int color, int darkness);
 
 /*	MOVEMENTS --------------------------------------------------------------- */
 int		update_player(t_data *data, double delta_time);
