@@ -12,6 +12,27 @@
 
 #include "cub3d.h"
 
+int	parse_sprite(void)
+{
+	if (valid_file("./textures/torch/torch00.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch01.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch02.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch03.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch04.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch05.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch06.xpm") == INVALID)
+		return (INVALID);
+	if (valid_file("./textures/torch/torch07.xpm") == INVALID)
+		return (INVALID);
+	return (VALID);
+}
+
 int	parse_textures(t_data *data)
 {
 	int	i;
@@ -88,6 +109,8 @@ int	parse_file(t_data *data, char **argv)
 	if (parse_textures(data) == INVALID)
 		return (free_all(data), INVALID);
 	if (parse_map(data) == INVALID)
+		return (free_all(data), INVALID);
+	if (parse_sprite() == INVALID)
 		return (free_all(data), INVALID);
 	return (VALID);
 }

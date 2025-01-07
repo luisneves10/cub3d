@@ -52,8 +52,8 @@ void	init_player(t_data *data)
 {
 	t_player	player;
 
-	player.x = data->mapinfo.start.x + (0.49);//VERIFICAR O CENTRO DO QUADRADO
-	player.y = data->mapinfo.start.y + (0.49);//VERIFICAR O CENTRO DO QUADRADO
+	player.x = data->mapinfo.start.x + (0.49);
+	player.y = data->mapinfo.start.y + (0.49);
 	data->player = player;
 	set_direction_vertical(data);
 	set_direction_horizontal(data);

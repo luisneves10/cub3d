@@ -32,7 +32,6 @@ int	valid_file(char *arg)
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 	{
-		close(fd);
 		return (error_msg("File: Either the file doesn't exist or you don't"
 				" have permission to open it", INVALID));
 	}
