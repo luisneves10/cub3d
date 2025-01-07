@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_init_data.c                                      :+:      :+:    :+:   */
+/*   0_init_data_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:30:39 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:33:12 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	init_win(t_win *win)
 {
@@ -48,4 +48,5 @@ void	init_data(t_data *data)
 	init_win(&data->win);
 	init_mapinfo(&data->mapinfo);
 	init_keys(data->key);
+	data->offset = 0;
 }

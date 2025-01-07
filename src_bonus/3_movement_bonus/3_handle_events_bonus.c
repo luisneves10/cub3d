@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3_handle_events.c                                  :+:      :+:    :+:   */
+/*   3_handle_events_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:48:22 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 12:49:13 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:15:11 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	handle_keypress(int keycode, t_data *data)
 {
@@ -47,5 +47,45 @@ int	handle_keyrelease(int keycode, t_data *data)
 		data->key[5] = 0;
 	if (keycode == data->key[6])
 		data->key[6] = 0;
+	return (0);
+}
+
+void	adjust_mouse_pos(int x, int y, t_data *data)
+{
+	if (x > WIN_WIDTH - 200)
+	{
+		x = 200;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+	if (x < 200)
+	{
+		x = WIN_WIDTH - 200;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+	if (y > WIN_HEIGHT - 200)
+	{
+		y = 200;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+	if (y < 200)
+	{
+		y = WIN_HEIGHT - 200;
+		mlx_mouse_move(data->win.mlx_ptr, data->win.win_ptr, x, y);
+	}
+}
+
+int	handle_mouse_move(int x, int y, t_data *data)
+{
+	static int	old_x = WIN_WIDTH / 2;
+
+	mlx_mouse_hide(data->win.mlx_ptr, data->win.win_ptr);
+	adjust_mouse_pos(x, y, data);
+	if (x == old_x)
+		return (0);
+	if (x < old_x)
+		rotate_left(data, 0.025);
+	else if (x > old_x)
+		rotate_right(data, 0.025);
+	old_x = x;
 	return (0);
 }

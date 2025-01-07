@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_parse_file.c                                     :+:      :+:    :+:   */
+/*   1_parse_file_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:11:30 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:16:07 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	parse_sprite(void)
 {
@@ -107,8 +107,10 @@ int	parse_file(t_data *data, char **argv)
 	if (copy_file(data) == INVALID)
 		return (INVALID);
 	if (parse_textures(data) == INVALID)
-		return (free_all(data), INVALID);
+		return (free_all(data, 0), INVALID);
 	if (parse_map(data) == INVALID)
-		return (free_all(data), INVALID);
+		return (free_all(data, 0), INVALID);
+	if (parse_sprite() == INVALID)
+		return (free_all(data, 0), INVALID);
 	return (VALID);
 }

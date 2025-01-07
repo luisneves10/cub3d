@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:30:43 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:28:14 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,9 @@ typedef struct s_data
 	t_mapinfo	mapinfo;
 	t_player	player;
 	t_img		img;
+	int			offset;
 	int			key[7];
+	t_img		sprite[8]; // CHANGE ACCORDING TO NUMBER OF IMAGES
 }	t_data;
 
 /* ========================================================================== */
@@ -208,12 +210,28 @@ void	create_frame(t_data *data, t_ray *ray, int x);
 
 t_img	new_file_img(t_win window, char *file);
 void	put_pixel_img(t_img img, int x, int y, int color);
+void	put_pixel_img_transp(t_img img, int x, int y, int color);
 int		get_texture_index(t_data *data, char orientation);
 int		get_texture_orientation(t_data *data, t_ray *ray);
+
+void	load_sprites(t_data *data);
+void	draw_torch(t_data *data, t_img torch);
+int		animate_movement(t_data *data);
+int		animate_sprite();
+
+void	draw_minimap_frame(t_data *data);
+void	draw_minimap(t_data *data);
+void	draw_player_on_minimap(t_data *data);
+void	draw_pov_on_minimap(t_data *data);
+
+int		color_gradient(int color, double step);
+int		calculate_darkness(t_ray *ray);
+int		apply_darkness(int color, int darkness);
 
 /*	MOVEMENTS --------------------------------------------------------------- */
 int		update_player(t_data *data, double delta_time);
 void	keypresses(t_data *data);
+int		handle_mouse_move(int x, int y, t_data *data);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 void	rotate_left(t_data *data, double rot_speed);
@@ -227,7 +245,7 @@ void	move_right(t_data *data, double move_speed);
 void	clean_and_exit(t_data *data, int code);
 int		quit_program(t_data *data);
 void	free_split(char **split);
-void	free_all(t_data *data);
+void	free_all(t_data *data, int i);
 void	free_paths(t_data *data);
 void	free_map(char **map, int height);
 

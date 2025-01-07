@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_image.c                                          :+:      :+:    :+:   */
+/*   2_image_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 12:51:03 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:15:06 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	draw_ceiling(t_data *data, t_ray *ray, int x)
 {
 	int		i;
+	int		color;
 	int		pixel;
+	double	step;
 
 	pixel = 0;
 	i = get_texture_index(data, 'C');
@@ -23,7 +25,9 @@ static void	draw_ceiling(t_data *data, t_ray *ray, int x)
 		return ;
 	while (pixel < ray->draw_start)
 	{
-		put_pixel_img(data->img, x, pixel++, data->mapinfo.texture[i].color);
+		step = (double)(WIN_HEIGHT / 2 - pixel) / ((WIN_HEIGHT/2) + 100);
+		color = color_gradient(data->mapinfo.texture[i].color, step);
+		put_pixel_img(data->img, x, pixel++, color);
 	}
 }
 
@@ -31,7 +35,8 @@ static void	draw_wall(t_data *data, t_ray *ray, int x)
 {
 	int				i;
 	int				pixel;
-	int				color;
+	int				darkness;
+	unsigned int	color;
 
 	pixel = ray->draw_start;
 	i = get_texture_orientation(data, ray);
@@ -44,6 +49,8 @@ static void	draw_wall(t_data *data, t_ray *ray, int x)
 		color = *(unsigned int *)(data->mapinfo.texture[i].img.addr
 				+ data->mapinfo.tex_y * data->mapinfo.texture[i].img.line_len
 				+ data->mapinfo.tex_x * (data->mapinfo.texture[i].img.bpp / 8));
+		darkness = calculate_darkness(ray);
+		color = apply_darkness(color, darkness);
 		put_pixel_img(data->img, x, pixel++, color);
 	}
 }
@@ -52,6 +59,8 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 {
 	int		pixel;
 	int		i;
+	int		color;
+	double	step;
 
 	pixel = ray->draw_end;
 	i = get_texture_index(data, 'F');
@@ -59,7 +68,9 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 		return ;
 	while (pixel < WIN_HEIGHT)
 	{
-		put_pixel_img(data->img, x, pixel++, data->mapinfo.texture[i].color);
+		step = (double)(pixel - (WIN_HEIGHT/2)) / ((WIN_HEIGHT/2) + 100);
+		color = color_gradient(data->mapinfo.texture[i].color, step);
+		put_pixel_img(data->img, x, pixel++, color);
 	}
 }
 
