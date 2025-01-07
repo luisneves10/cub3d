@@ -12,27 +12,6 @@
 
 #include "cub3d.h"
 
-int	parse_sprite(void)
-{
-	if (valid_file("./textures/torch/torch00.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch01.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch02.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch03.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch04.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch05.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch06.xpm") == INVALID)
-		return (INVALID);
-	if (valid_file("./textures/torch/torch07.xpm") == INVALID)
-		return (INVALID);
-	return (VALID);
-}
-
 int	parse_textures(t_data *data)
 {
 	int	i;

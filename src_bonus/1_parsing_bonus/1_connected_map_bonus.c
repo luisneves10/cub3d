@@ -93,7 +93,7 @@ int	is_connected_map(char *str, int i)
 int	check_file_return_cases(char *str, int i, t_text_orientations *counters)
 {
 	if (str[i] && str[i] != '1' && !count_text(str[i], counters))
-		return (error_msg("Missing texture orientation", INVALID));
+		return (error_msg("Wrong formatting", INVALID));
 	else if (str[i] && str[i] == '1' && all_textures(counters))
 	{
 		if (is_connected_map(str, i) == INVALID)
@@ -101,7 +101,7 @@ int	check_file_return_cases(char *str, int i, t_text_orientations *counters)
 		return (VALID);
 	}
 	else if (str[i] && str[i] == '1' && !all_textures(counters))
-		return (error_msg("Missing/duplicated textures/colors", INVALID));
+		return (error_msg("Wrong formatting", INVALID));
 	return (VALID);
 }
 

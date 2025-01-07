@@ -47,7 +47,7 @@ int	is_cub_extension(char *arg)
 	while (arg[i + 1])
 		i++;
 	if (arg[i] == 'b' && arg[i - 1] == 'u' && arg[i - 2] == 'c'
-		&& arg[i - 3] == '.')
+		&& arg[i - 3] == '.' && arg[i - 4] && arg[i - 4] != '/')
 		return (VALID);
 	return (error_msg("File: only .cub files are valid", INVALID));
 }

@@ -20,7 +20,7 @@ int	is_xpm_extension(char *arg)
 	while (arg[i + 1])
 		i++;
 	if (arg[i] == 'm' && arg[i - 1] == 'p' && arg[i - 2] == 'x'
-		&& arg[i - 3] == '.')
+		&& arg[i - 3] == '.' && arg[i - 4] && arg[i - 4] != '/')
 		return (1);
 	return (error_msg("File: only .xpm images are valid", 0));
 }
