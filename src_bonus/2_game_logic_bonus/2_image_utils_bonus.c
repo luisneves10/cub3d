@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_image_utils.c                                    :+:      :+:    :+:   */
+/*   2_image_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:23:44 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 12:46:58 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:15:07 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 t_img	new_file_img(t_win window, char *file)
 {
@@ -26,6 +26,19 @@ void	put_pixel_img(t_img img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
+	{
+		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
+		*(unsigned int *)dst = color;
+	}
+}
+
+void	put_pixel_img_transp(t_img img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (color == (int)0xFF000000)
+		return ;
 	if (x >= 0 && y >= 0 && x < img.w && y < img.h)
 	{
 		dst = img.addr + (y * img.line_len + x * (img.bpp / 8));

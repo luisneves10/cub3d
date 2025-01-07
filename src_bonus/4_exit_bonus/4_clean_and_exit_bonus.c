@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4_clean_and_exit.c                                 :+:      :+:    :+:   */
+/*   4_clean_and_exit_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:08:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:04:44 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:15:15 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	free_split(char **split)
 {
@@ -55,8 +55,23 @@ void	free_paths(t_data *data)
 	}
 }
 
-void	free_all(t_data *data)
+void	free_sprite(t_data *data)
 {
+	int	i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (data->sprite[i].img_ptr)
+			mlx_destroy_image(data->win.mlx_ptr, data->sprite[i].img_ptr);
+		i ++;
+	}
+}
+
+void	free_all(t_data *data, int i)
+{
+	if (i)
+		free_sprite(data);
 	free_paths(data);//mudar nome
 	free_split(data->mapinfo.file);
 	free_map(data->mapinfo.map, data->mapinfo.nb_lines);
@@ -66,7 +81,7 @@ void	clean_and_exit(t_data *data, int code)
 {
 	if (!data)
 		exit (code);
-	free_all(data);
+	free_all(data, 1);
 	mlx_destroy_image(data->win.mlx_ptr, data->img.img_ptr);
 	if (data->win.mlx_ptr && data->win.win_ptr)
 		mlx_destroy_window(data->win.mlx_ptr, data->win.win_ptr);

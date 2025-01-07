@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_sprite.c                                         :+:      :+:    :+:   */
+/*   2_sprite_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luibarbo <luibarbo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:22:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 16:31:39 by luibarbo         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:15:10 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	load_sprites(t_data *data)
 {
