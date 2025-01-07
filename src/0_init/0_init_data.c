@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:25:37 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:13:26 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	init_data(t_data *data)
 	init_win(&data->win);
 	init_mapinfo(&data->mapinfo);
 	init_keys(data->key);
+	data->offset = 0;
 }

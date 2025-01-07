@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/06 15:54:55 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:28:22 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ void	move_right(t_data *data, double move_speed);
 void	clean_and_exit(t_data *data, int code);
 int		quit_program(t_data *data);
 void	free_split(char **split);
-void	free_all(t_data *data);
+void	free_all(t_data *data, int i);
 void	free_paths(t_data *data);
 void	free_map(char **map, int height);
 

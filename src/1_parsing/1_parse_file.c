@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 15:07:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/26 14:44:02 by luibarbo         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:28:07 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ int	parse_file(t_data *data, char **argv)
 	if (copy_file(data) == INVALID)
 		return (INVALID);
 	if (parse_textures(data) == INVALID)
-		return (free_all(data), INVALID);
+		return (free_all(data, 0), INVALID);
 	if (parse_map(data) == INVALID)
-		return (free_all(data), INVALID);
+		return (free_all(data, 0), INVALID);
 	if (parse_sprite() == INVALID)
-		return (free_all(data), INVALID);
+		return (free_all(data, 0), INVALID);
 	return (VALID);
 }

@@ -6,12 +6,11 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2024/12/27 16:53:24 by luibarbo         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:07:50 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 int	game_loop(t_data *data)
 {
