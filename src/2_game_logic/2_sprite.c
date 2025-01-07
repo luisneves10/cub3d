@@ -47,12 +47,14 @@ void	draw_torch(t_data *data, t_img torch)
 
 int	animate_movement(t_data *data)
 {
-	static int offset = 0;
-	int frame_delay = 20; // Adjust for speed
-	static int frame_counter = 0;
+	static int	offset = 0;
+	static int	frame_counter = 0;
+	int			frame_delay;
 
+	frame_delay = 20; // Adjust for speed
 	frame_counter++;
-	if (frame_counter >= frame_delay) {
+	if (frame_counter >= frame_delay)
+	{
 		frame_counter = 0;
 		offset = (offset + 10) % 20; // Loop through frames
 	}
@@ -64,12 +66,14 @@ int	animate_movement(t_data *data)
 
 int	animate_sprite()
 {
-	static int sprite = 0;
-	int frame_delay = 10; // Adjust for speed
-	static int frame_counter = 0;
+	static int	sprite = 0;
+	static int	frame_counter = 0;
+	int			frame_delay;
 
+	frame_delay = 10; // Adjust for speed
 	frame_counter++;
-	if (frame_counter >= frame_delay) {
+	if (frame_counter >= frame_delay)
+	{
 		frame_counter = 0;
 		sprite = (sprite + 1) % 8; // Loop through frames (CHANGE ACCORDING TO NUMBER OF IMAGES)
 	}

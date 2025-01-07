@@ -19,6 +19,7 @@ void	init_textures(t_data *data)
 	i = 0;
 	while (i < 6)
 	{
+		data->mapinfo.texture[i].color = i - 10;
 		data->mapinfo.texture[i].orientation = '\0';
 		data->mapinfo.texture[i].path = NULL;
 		data->mapinfo.texture[i].rgb[0] = -1;

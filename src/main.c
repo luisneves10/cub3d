@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	ft_putstr_fd(BOLD GREEN"Valid file! "RESET, 1);
 	ft_putendl_fd(GREEN"Starting cub3d..."RESET, 1);
 	init_mlx(&data);
-	load_sprites(&data); //mudar de sitio
+	load_sprites(&data);
 	mlx_loop_hook(data.win.mlx_ptr, game_loop, &data);
 	keypresses(&data);
 	mlx_loop(data.win.mlx_ptr);
