@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_image_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:06 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:11:07 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	draw_ceiling(t_data *data, t_ray *ray, int x)
 		return ;
 	while (pixel < ray->draw_start)
 	{
-		step = (double)(WIN_HEIGHT / 2 - pixel) / ((WIN_HEIGHT/2) + 100);
+		step = (double)(WIN_HEIGHT / 2 - pixel) / ((WIN_HEIGHT / 2) + 100);
 		color = color_gradient(data->mapinfo.texture[i].color, step);
 		put_pixel_img(data->img, x, pixel++, color);
 	}
@@ -68,7 +68,7 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 		return ;
 	while (pixel < WIN_HEIGHT)
 	{
-		step = (double)(pixel - (WIN_HEIGHT/2)) / ((WIN_HEIGHT/2) + 100);
+		step = (double)(pixel - (WIN_HEIGHT / 2)) / ((WIN_HEIGHT / 2) + 100);
 		color = color_gradient(data->mapinfo.texture[i].color, step);
 		put_pixel_img(data->img, x, pixel++, color);
 	}

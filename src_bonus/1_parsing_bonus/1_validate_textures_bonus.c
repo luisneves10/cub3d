@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_validate_textures_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 09:59:38 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:03 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:54:02 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ int	unique_textures(t_data *data)
 			return (error_msg("Colors are not unique", INVALID));
 		while (++j < 6)
 		{
-			if (ft_strncmp(data->mapinfo.texture[i].path, data->mapinfo.texture[j].path, ft_strlen(data->mapinfo.texture[i].path)) == 0
-				&& ft_strlen(data->mapinfo.texture[i].path) == ft_strlen(data->mapinfo.texture[j].path))
+			if (ft_strncmp(data->mapinfo.texture[i].path,
+					data->mapinfo.texture[j].path,
+					ft_strlen(data->mapinfo.texture[i].path)) == 0
+				&& ft_strlen(data->mapinfo.texture[i].path)
+				== ft_strlen(data->mapinfo.texture[j].path))
 				counter ++;
 		}
 		if (counter > 1)

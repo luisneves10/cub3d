@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_valid_images_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:23:16 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:02 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:53:06 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	valid_texture(t_texture texture)
 	if (!is_dir(texture.path)
 		|| !is_xpm_extension(texture.path))
 		return (INVALID);
-	//que verificacoes e preciso fazer?
 	return (VALID);
 }

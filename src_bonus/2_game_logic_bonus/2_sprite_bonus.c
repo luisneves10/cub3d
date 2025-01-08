@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_sprite_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:22:19 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:10 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:56:17 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,30 @@ int	animate_movement(t_data *data)
 	static int	frame_counter = 0;
 	int			frame_delay;
 
-	frame_delay = 20; // Adjust for speed
+	frame_delay = 20;
 	frame_counter++;
 	if (frame_counter >= frame_delay)
 	{
 		frame_counter = 0;
-		offset = (offset + 10) % 20; // Loop through frames
+		offset = (offset + 10) % 20;
 	}
 	if (data->key[1] || data->key[2] || data->key[3] || data->key[4])
 		data->offset = offset;
 	return (0);
 }
 
-
-int	animate_sprite()
+int	animate_sprite(void)
 {
 	static int	sprite = 0;
 	static int	frame_counter = 0;
 	int			frame_delay;
 
-	frame_delay = 10; // Adjust for speed
+	frame_delay = 10;
 	frame_counter++;
 	if (frame_counter >= frame_delay)
 	{
 		frame_counter = 0;
-		sprite = (sprite + 1) % 8; // Loop through frames (CHANGE ACCORDING TO NUMBER OF IMAGES)
+		sprite = (sprite + 1) % 8;
 	}
 	return (sprite);
 }

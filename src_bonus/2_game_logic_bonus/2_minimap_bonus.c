@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_minimap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:22:22 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:08 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:15:50 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,30 @@ void	draw_minimap_frame(t_data *data)
 	}
 }
 
-void draw_minimap(t_data *data)
+void	draw_minimap(t_data *data)
 {
-	int	map_start_x;
-	int	map_start_y;
-	int	map_x;
-	int	map_y;
-	int	x;
-	int	y;
+	t_point	p;
+	t_point	map;
+	int		map_start_x;
+	int		map_start_y;
 
 	map_start_x = (int)data->player.x - (MM_WIDTH / 2 / MM_SCALE);
 	map_start_y = (int)data->player.y - (MM_HEIGHT / 2 / MM_SCALE);
-	y = 9;
-	while (++y < MM_HEIGHT)
+	p.y = 9;
+	while (++p.y < MM_HEIGHT)
 	{
-		x = 9;
-		while (++x < MM_WIDTH)
+		p.x = 9;
+		while (++p.x < MM_WIDTH)
 		{
-			map_x = map_start_x + x / MM_SCALE - 1;
-			map_y = map_start_y + y / MM_SCALE - 1;
-			if (map_x >= 0 && map_y >= 0 && map_y < data->mapinfo.nb_lines
-				&& map_x < ft_strlen(data->mapinfo.map[map_y]))
+			map.x = map_start_x + p.x / MM_SCALE - 1;
+			map.y = map_start_y + p.y / MM_SCALE - 1;
+			if (map.x >= 0 && map.y >= 0 && map.y < data->mapinfo.nb_lines
+				&& map.x < ft_strlen(data->mapinfo.map[map.y]))
 			{
-				if (data->mapinfo.map[map_y][map_x] == '1')
-					put_pixel_img(data->img, x, y, 0xFFFFFF);
+				if (data->mapinfo.map[map.y][map.x] == '1')
+					put_pixel_img(data->img, p.x, p.y, 0xFFFFFF);
 				else
-					put_pixel_img(data->img, x, y, 0x444444);
+					put_pixel_img(data->img, p.x, p.y, 0x444444);
 			}
 		}
 	}
@@ -60,10 +58,10 @@ void draw_minimap(t_data *data)
 
 void	draw_player_on_minimap(t_data *data)
 {
-	int	center_x;
-	int	center_y;
 	int	px;
 	int	py;
+	int	center_x;
+	int	center_y;
 
 	center_x = MM_WIDTH / 2 + 10;
 	center_y = MM_HEIGHT / 2 + 10;
@@ -80,27 +78,35 @@ void	draw_player_on_minimap(t_data *data)
 	}
 }
 
+static void	init_vars(int *i, t_point *p, t_point *center)
+{
+	*i = 0;
+	p->x = 0;
+	p->y = 0;
+	center->x = MM_WIDTH / 2 + 10;
+	center->y = MM_HEIGHT / 2 + 10;
+}
+
 void	draw_pov_on_minimap(t_data *data)
 {
-	int	center_x;
-	int	center_y;
-	int	i;
+	int		i;
+	t_point	p;
+	t_point	center;
+	double	angle_end;
+	double	angle_start;
 
-	center_x = MM_WIDTH / 2 + 10;
-	center_y = MM_HEIGHT / 2 + 10;
-	i = 0;
+	init_vars(&i, &p, &center);
 	while (i < FOV_RADIUS * MM_SCALE)
 	{
-		double angle_start = atan2(data->player.dir_y, data->player.dir_x) - M_PI / 6;
-		double angle_end = atan2(data->player.dir_y, data->player.dir_x) + M_PI / 6;
-
-		for (double angle = angle_start; angle <= angle_end; angle += 0.01)
+		angle_start = atan2(data->player.dir_y, data->player.dir_x) - M_PI / 6;
+		angle_end = atan2(data->player.dir_y, data->player.dir_x) + M_PI / 6;
+		while (angle_start <= angle_end)
 		{
-			int x = center_x + cos(angle) * i;
-			int y = center_y + sin(angle) * i;
-
-			if (x >= 0 && x < MM_WIDTH && y >= 0 && y < MM_HEIGHT)
-				put_pixel_img(data->img, x, y, 0x00FF00);
+			p.x = center.x + cos(angle_start) * i;
+			p.y = center.y + sin(angle_start) * i;
+			if (p.x >= 0 && p.x < MM_WIDTH && p.y >= 0 && p.y < MM_HEIGHT)
+				put_pixel_img(data->img, p.x, p.y, 0x00FF00);
+			angle_start += 0.01;
 		}
 		i++;
 	}

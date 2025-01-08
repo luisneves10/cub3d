@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_image_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:23:44 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:07 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:55:58 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_img	new_file_img(t_win window, char *file)
 {
 	t_img	image;
 
-	image.img_ptr = mlx_xpm_file_to_image(window.mlx_ptr, file, &image.w, &image.h);
+	image.img_ptr = mlx_xpm_file_to_image(window.mlx_ptr, file,
+			&image.w, &image.h);
 	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
 			&(image.line_len), &(image.endian));
 	return (image);

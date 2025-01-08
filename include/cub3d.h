@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:30:43 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:22:58 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@
 # define MM_SCALE 10
 # define FOV_RADIUS 2
 
-typedef struct s_player {
-	double x;
-	double y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_img
@@ -114,11 +115,11 @@ typedef struct s_text_orientations
 {
 	int	f;
 	int	c;
-	int n;
+	int	n;
 	int	s;
 	int	e;
 	int	w;
-} t_text_orientations;
+}	t_text_orientations;
 
 typedef struct s_texture
 {
@@ -159,7 +160,7 @@ typedef struct s_data
 /* ========================================================================== */
 
 int		error_msg(char *msg, int code);
-void 	free_map(char **map, int height);
+void	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
@@ -173,12 +174,12 @@ void	init_counters(t_text_orientations *text_counters);
 int		parse_file(t_data *data, char **argv);
 int		is_text(char *str);
 int		get_text_path(t_data *data, int k);
-int 	map_height(t_data *data);
+int		map_height(t_data *data);
 int		copy_map(t_data *data);
-int 	valid_map_chars(t_data *data);
-int 	valid_map_chars(t_data *data);
-int 	validate_walls(char **map, int height);
-int 	is_valid_char(char c);
+int		valid_map_chars(t_data *data);
+int		valid_map_chars(t_data *data);
+int		validate_walls(char **map, int height);
+int		is_valid_char(char c);
 int		check_file(char *str);
 int		valid_texture(t_texture texture);
 int		flood_fill(char **map, int map_height, int x, int y);
@@ -232,6 +233,6 @@ void	free_paths(t_data *data);
 void	free_map(char **map, int height);
 
 /*	UTILS ------------------------------------------------------------------- */
-double	get_delta_time();
+double	get_delta_time(void);
 
 #endif

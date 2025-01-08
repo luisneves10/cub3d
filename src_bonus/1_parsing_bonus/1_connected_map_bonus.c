@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_connected_map_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 17:10:14 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:13:57 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:54:36 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,5 @@ int	check_file(char *str)
 		else
 			return (VALID);
 	}
-	return (error_msg("Invalid formating.", INVALID));//e invalid?
+	return (error_msg("Invalid formating.", INVALID));
 }

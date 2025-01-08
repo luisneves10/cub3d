@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   4_clean_and_exit_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:08:00 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:15 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:13:10 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	free_all(t_data *data, int i)
 {
 	if (i)
 		free_sprite(data);
-	free_paths(data);//mudar nome
+	free_paths(data);
 	free_split(data->mapinfo.file);
 	free_map(data->mapinfo.map, data->mapinfo.nb_lines);
 }
@@ -92,10 +92,4 @@ void	clean_and_exit(t_data *data, int code)
 		free(data->win.mlx_ptr);
 	}
 	exit (code);
-}
-
-int	quit_program(t_data *data)
-{
-	clean_and_exit(data, 0);
-	return (0);
 }

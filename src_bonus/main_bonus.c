@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:37 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:19 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:13:14 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	game_loop(t_data *data)
 	draw_player_on_minimap(data);
 	mlx_put_image_to_window(data->win.mlx_ptr, data->win.win_ptr,
 		data->img.img_ptr, 0, 0);
+	return (0);
+}
+
+int	quit_program(t_data *data)
+{
+	clean_and_exit(data, 0);
 	return (0);
 }
 

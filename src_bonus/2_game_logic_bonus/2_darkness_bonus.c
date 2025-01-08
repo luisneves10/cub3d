@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_darkness_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:20:48 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:05 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:54:53 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int	apply_darkness(int color, int darkness)
 	r = (color >> 16) & 0xFF;
 	g = (color >> 8) & 0xFF;
 	b = color & 0xFF;
-
 	r = r * (255 - darkness) / 255;
 	g = g * (255 - darkness) / 255;
 	b = b * (255 - darkness) / 255;
-
 	return ((r << 16) | (g << 8) | b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_init_data_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 12:38:45 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:33:12 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:52:40 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->direction = '\0';
 }
 
-static void init_keys(int *key)
+static void	init_keys(int *key)
 {
 	key[0] = 0;
 	key[1] = 0;

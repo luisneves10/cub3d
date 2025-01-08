@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_moves_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:30:43 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:14 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:11:32 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	update_player(t_data *data, double delta_time)
 
 void	keypresses(t_data *data)
 {
-	mlx_hook(data->win.win_ptr, MotionNotify, PointerMotionMask, handle_mouse_move, data);
+	mlx_hook(data->win.win_ptr, MotionNotify,
+		PointerMotionMask, handle_mouse_move, data);
 	mlx_hook(data->win.win_ptr, KeyPress, KeyPressMask, handle_keypress, data);
 	mlx_hook(data->win.win_ptr, KeyRelease,
 		KeyReleaseMask, handle_keyrelease, data);

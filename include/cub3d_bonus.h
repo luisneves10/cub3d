@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/07 13:28:14 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:21:27 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -55,13 +55,14 @@
 # define MM_SCALE 10
 # define FOV_RADIUS 2
 
-typedef struct s_player {
-	double x;
-	double y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 typedef struct s_img
@@ -114,11 +115,11 @@ typedef struct s_text_orientations
 {
 	int	f;
 	int	c;
-	int n;
+	int	n;
 	int	s;
 	int	e;
 	int	w;
-} t_text_orientations;
+}	t_text_orientations;
 
 typedef struct s_texture
 {
@@ -153,7 +154,7 @@ typedef struct s_data
 	t_img		img;
 	int			offset;
 	int			key[7];
-	t_img		sprite[8]; // CHANGE ACCORDING TO NUMBER OF IMAGES
+	t_img		sprite[8];
 }	t_data;
 
 /* ========================================================================== */
@@ -161,7 +162,7 @@ typedef struct s_data
 /* ========================================================================== */
 
 int		error_msg(char *msg, int code);
-void 	free_map(char **map, int height);
+void	free_map(char **map, int height);
 
 /*	INIT -------------------------------------------------------------------- */
 void	init_data(t_data *data);
@@ -175,12 +176,12 @@ void	init_counters(t_text_orientations *text_counters);
 int		parse_file(t_data *data, char **argv);
 int		is_text(char *str);
 int		get_text_path(t_data *data, int k);
-int 	map_height(t_data *data);
+int		map_height(t_data *data);
 int		copy_map(t_data *data);
-int 	valid_map_chars(t_data *data);
-int 	valid_map_chars(t_data *data);
-int 	validate_walls(char **map, int height);
-int 	is_valid_char(char c);
+int		valid_map_chars(t_data *data);
+int		valid_map_chars(t_data *data);
+int		validate_walls(char **map, int height);
+int		is_valid_char(char c);
 int		check_file(char *str);
 int		valid_texture(t_texture texture);
 int		flood_fill(char **map, int map_height, int x, int y);
@@ -217,7 +218,7 @@ int		get_texture_orientation(t_data *data, t_ray *ray);
 void	load_sprites(t_data *data);
 void	draw_torch(t_data *data, t_img torch);
 int		animate_movement(t_data *data);
-int		animate_sprite();
+int		animate_sprite(void);
 
 void	draw_minimap_frame(t_data *data);
 void	draw_minimap(t_data *data);
@@ -250,6 +251,6 @@ void	free_paths(t_data *data);
 void	free_map(char **map, int height);
 
 /*	UTILS ------------------------------------------------------------------- */
-double	get_delta_time();
+double	get_delta_time(void);
 
 #endif
