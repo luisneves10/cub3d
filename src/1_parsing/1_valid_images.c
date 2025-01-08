@@ -21,8 +21,8 @@ int	is_xpm_extension(char *arg)
 		i++;
 	if (arg[i] == 'm' && arg[i - 1] == 'p' && arg[i - 2] == 'x'
 		&& arg[i - 3] == '.' && arg[i - 4] && arg[i - 4] != '/')
-		return (1);
-	return (error_msg("File: only .xpm images are valid", 0));
+		return (VALID);
+	return (error_msg("Texture: only .xpm images are valid", INVALID));
 }
 
 int	valid_texture(t_texture texture)
@@ -32,6 +32,5 @@ int	valid_texture(t_texture texture)
 	if (!is_dir(texture.path)
 		|| !is_xpm_extension(texture.path))
 		return (INVALID);
-	//que verificacoes e preciso fazer?
 	return (VALID);
 }

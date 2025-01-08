@@ -31,7 +31,7 @@ static void	init_mapinfo(t_mapinfo *mapinfo)
 	mapinfo->direction = '\0';
 }
 
-static void init_keys(int *key)
+static void	init_keys(int *key)
 {
 	key[0] = 0;
 	key[1] = 0;

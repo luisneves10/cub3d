@@ -16,7 +16,8 @@ t_img	new_file_img(t_win window, char *file)
 {
 	t_img	image;
 
-	image.img_ptr = mlx_xpm_file_to_image(window.mlx_ptr, file, &image.w, &image.h);
+	image.img_ptr = mlx_xpm_file_to_image(window.mlx_ptr, file,
+			&image.w, &image.h);
 	image.addr = mlx_get_data_addr(image.img_ptr, &(image.bpp),
 			&(image.line_len), &(image.endian));
 	return (image);

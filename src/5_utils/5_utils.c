@@ -12,15 +12,15 @@
 
 #include "cub3d.h"
 
-double get_delta_time()
+double	get_delta_time(void)
 {
-	static struct timeval last_time;
-	struct timeval current_time;
-	double delta_time;
+	static struct timeval	last_time;
+	struct timeval			current_time;
+	double					delta_time;
 
 	gettimeofday(&current_time, NULL);
-	delta_time = (current_time.tv_sec - last_time.tv_sec) +
-			(current_time.tv_usec - last_time.tv_usec) / 1000000.0;
+	delta_time = (current_time.tv_sec - last_time.tv_sec)
+		+ (current_time.tv_usec - last_time.tv_usec) / 1000000.0;
 	last_time = current_time;
 	return (delta_time);
 }

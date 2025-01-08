@@ -50,8 +50,11 @@ int	unique_textures(t_data *data)
 			return (error_msg("Colors are not unique", INVALID));
 		while (++j < 6)
 		{
-			if (ft_strncmp(data->mapinfo.texture[i].path, data->mapinfo.texture[j].path, ft_strlen(data->mapinfo.texture[i].path)) == 0
-				&& ft_strlen(data->mapinfo.texture[i].path) == ft_strlen(data->mapinfo.texture[j].path))
+			if (ft_strncmp(data->mapinfo.texture[i].path,
+					data->mapinfo.texture[j].path,
+					ft_strlen(data->mapinfo.texture[i].path)) == 0
+				&& ft_strlen(data->mapinfo.texture[i].path)
+				== ft_strlen(data->mapinfo.texture[j].path))
 				counter ++;
 		}
 		if (counter > 1)

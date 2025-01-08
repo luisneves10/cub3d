@@ -130,5 +130,5 @@ int	check_file(char *str)
 		else
 			return (VALID);
 	}
-	return (error_msg("Invalid formating.", INVALID));//e invalid?
+	return (error_msg("Invalid formatting.", INVALID));
 }
