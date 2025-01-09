@@ -6,7 +6,7 @@
 /*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 22:31:07 by daduarte          #+#    #+#             */
-/*   Updated: 2025/01/07 13:15:09 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:26:44 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	raycast(t_data *data)
 		calculate_step_and_side_dist(data, &ray);
 		perform_dda(data, &ray);
 		calculate_distance_and_height(data, &ray);
-		create_frame(data, &ray, x);
+		draw_vertical_line(data, &ray, x);
 		x++;
 	}
 	return (0);

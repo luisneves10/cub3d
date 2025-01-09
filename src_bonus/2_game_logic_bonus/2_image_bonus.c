@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_image_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:51:50 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/08 15:11:07 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:26:47 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	get_pixels_position(t_data *data, t_ray *ray)
 			+ ray->line_height / 2) * data->mapinfo.tex_step;
 }
 
-void	create_frame(t_data *data, t_ray *ray, int x)
+void	draw_vertical_line(t_data *data, t_ray *ray, int x)
 {
 	get_pixels_position(data, ray);
 	draw_ceiling(data, ray, x);

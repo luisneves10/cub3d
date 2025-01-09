@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daduarte <daduarte@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: daduarte <daduarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:09:10 by luibarbo          #+#    #+#             */
-/*   Updated: 2025/01/08 15:22:58 by daduarte         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:26:31 by daduarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ void	init_ray(t_data *data, int x, t_ray *ray);
 void	calculate_step_and_side_dist(t_data *data, t_ray *ray);
 void	perform_dda(t_data *data, t_ray *ray);
 void	calculate_distance_and_height(t_data *data, t_ray *ray);
-void	create_frame(t_data *data, t_ray *ray, int x);
+void	draw_vertical_line(t_data *data, t_ray *ray, int x);
 
 t_img	new_file_img(t_win window, char *file);
 void	put_pixel_img(t_img img, int x, int y, int color);
