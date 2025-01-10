@@ -14,7 +14,7 @@
 #	GENERAL                                                                    #
 # ============================================================================ #
 
-NAME	= cub3d
+NAME		= cub3d
 BONUS_NAME	= cub3d_bonus
 
 CC			= cc
@@ -22,45 +22,42 @@ CFLAGS		= -Wall -Wextra -Werror -g
 LIBFLAGS	= -L$(MLX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lbsd -lXext -lX11 -lm
 RM			= rm -rf
 
-INCLUDE		= -Iinclude/
-SRC_DIR		= src/
+INCLUDE			= -Iinclude/
+SRC_DIR			= src/
 BONUS_SRC_DIR	= src_bonus/
-OBJ_DIR		= obj/
-BONUS_OBJ_DIR		= obj_bonus/
-LIBFT_DIR	= libft/
-LIBFT		= libft/libft.a
-MLX_DIR		= minilibx-linux/
-MLX_LIB		= $(MLX_DIR)/libmlx_linux.a
+OBJ_DIR			= obj/
+BONUS_OBJ_DIR	= obj_bonus/
+LIBFT_DIR		= libft/
+LIBFT			= libft/libft.a
+MLX_DIR			= minilibx-linux/
+MLX_LIB			= $(MLX_DIR)/libmlx_linux.a
 
-#SRC	= $(shell find $(SRC_DIR) -name '*.c')
-BONUS_SRC	= $(shell find $(BONUS_SRC_DIR) -name '*.c')
-
-# BONUS_SRC	= src_bonus/main_bonus.c src_bonus/error_bonus.c \
-# 			  src_bonus/0_init_bonus/0_init_data_bonus.c \
-# 			  src_bonus/0_init_bonus/0_init_mlx_bonus.c \
-# 			  src_bonus/0_init_bonus/0_init_player_bonus.c \
-# 			  src_bonus/0_init_bonus/0_init_textures_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_connected_map_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_connected_map_utils_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_parse_file_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_parse_map_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_parse_map_utils_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_parse_textures_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_validate_textures_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_valid_arg_bonus.c \
-# 			  src_bonus/1_parsing_bonus/1_valid_images_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_image_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_image_utils_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_minimap_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_raycast_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_sprite_bonus.c \
-# 			  src_bonus/2_game_logic_bonus/2_darkness_bonus.c \
-# 			  src_bonus/3_movement_bonus/3_keypresses_move_bonus.c \
-# 			  src_bonus/3_movement_bonus/3_keypresses_rotate_bonus.c \
-# 			  src_bonus/3_movement_bonus/3_moves_bonus.c \
-# 			  src_bonus/3_movement_bonus/3_handle_events_bonus.c \
-# 			  src_bonus/4_exit_bonus/4_clean_and_exit_bonus.c \
-# 			  src_bonus/5_utils_bonus/5_utils_bonus.c
+BONUS_SRC	= src_bonus/main_bonus.c src_bonus/error_bonus.c \
+			  src_bonus/0_init_bonus/0_init_data_bonus.c \
+			  src_bonus/0_init_bonus/0_init_mlx_bonus.c \
+			  src_bonus/0_init_bonus/0_init_player_bonus.c \
+			  src_bonus/0_init_bonus/0_init_textures_bonus.c \
+			  src_bonus/1_parsing_bonus/1_connected_map_bonus.c \
+			  src_bonus/1_parsing_bonus/1_connected_map_utils_bonus.c \
+			  src_bonus/1_parsing_bonus/1_parse_file_bonus.c \
+			  src_bonus/1_parsing_bonus/1_parse_map_bonus.c \
+			  src_bonus/1_parsing_bonus/1_parse_map_utils_bonus.c \
+			  src_bonus/1_parsing_bonus/1_parse_textures_bonus.c \
+			  src_bonus/1_parsing_bonus/1_validate_textures_bonus.c \
+			  src_bonus/1_parsing_bonus/1_valid_arg_bonus.c \
+			  src_bonus/1_parsing_bonus/1_valid_images_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_image_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_image_utils_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_minimap_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_raycast_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_sprite_bonus.c \
+			  src_bonus/2_game_logic_bonus/2_darkness_bonus.c \
+			  src_bonus/3_movement_bonus/3_keypresses_move_bonus.c \
+			  src_bonus/3_movement_bonus/3_keypresses_rotate_bonus.c \
+			  src_bonus/3_movement_bonus/3_moves_bonus.c \
+			  src_bonus/3_movement_bonus/3_handle_events_bonus.c \
+			  src_bonus/4_exit_bonus/4_clean_and_exit_bonus.c \
+			  src_bonus/5_utils_bonus/5_utils_bonus.c
 
 SRC		= src/main.c src/error.c \
 		  src/0_init/0_init_data.c \
@@ -173,7 +170,9 @@ $(BONUS_OBJ_DIR):
 
 re: fclean all
 
-.PHONY: all clean fclean re mlx bonus
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re mlx bonus rebonus
 
 # ============================================================================ #
 #	COLORS                                                                     #
